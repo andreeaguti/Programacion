@@ -56,13 +56,12 @@ String apellido1 =  sc.nextLine();
 System.out.println("Escriba el segundo apellido: ");
 String apellido2 =  sc.nextLine();
 
-String snombre = nombre.substring(0,3); //estamos cogiendo las 3 primeras letras
-String sapellido1 = apellido1.substring(0,3);
-String sapellido2 = apellido2.substring(0,3);
+String snombre = nombre.substring(0,3).toUpperCase(); //estamos cogiendo las 3 primeras letras
+String sapellido1 = apellido1.substring(0,3).toUpperCase();
+String sapellido2 = apellido2.substring(0,3).toUpperCase();
 
 System.out.println(snombre + sapellido1 + sapellido2);
-//se usaria toUppercase pero no se como hacerlo a varios Strings
-//NO HE PODIDO PONERLO EN MAYUSCULAS
+
 
 /* Ejercicio 04: Crea un programa que muestre por pantalla cuantas vocales de cada
 tipo hay (cuantas ‘a’, cuantas ‘e’, etc.) en una frase introducida por teclado.
@@ -80,7 +79,7 @@ sc = new Scanner(System.in);
 System.out.println("Escriba un texto ");
 String textoContarVocales =  sc.nextLine();
 
-textoContarVocales = textoContarVocales.toLowerCase(); // convertimos el texto a minusculas
+textoContarVocales = textoContarVocales.toLowerCase(); // convierto el texto a minusculas
 
 int contadorA = 0;
 int contadorE = 0;
@@ -138,15 +137,6 @@ if (sinEspacios.equals(fraseAlreves)){
 }else {
     System.out.println("No es un palindromo");
 }
-
-
-
-
-
-
-
-
-
 
 
 

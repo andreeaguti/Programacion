@@ -16,8 +16,10 @@ int numeros = 1; //valor inicial
             for (int j = 0; j < 5; j++) { //aqui rellenamos las columnas
                 matriz[i][j] = numeros; //numero actual
                 numeros ++; //aumentamos el numero
+                //System.out.println(matriz[i][j]);
             }
         }
+        //
         for (int i = 0; i < 5; i++) { //muestra la matriz por pantalla
             for (int j = 0; j < 5; j++) {
                 System.out.print(matriz[i][j] + "\t");
@@ -32,17 +34,14 @@ sc = new Scanner(System.in);
 
 int tabla[][] = new int[10][10];
 
-for (int i = 0; i < 10; i++) { //fila
-    for (int j = 0; j < 10; j++) { //columna
+for (int i = 0; i < tabla.length; i++) { //fila
+    for (int j = 0; j < tabla[i].length; j++) { //columna
         tabla[i][j] = (i + 1) * (j + 1);
+        System.out.println(tabla[i][j] + "");
     }
+    System.out.println();
 }
-    for (int i = 0; i < 10; i++) { //muestra la matriz por pantalla
-        for (int j = 0; j < 10; j++) {
-         System.out.print(tabla[i][j] + "\t");
-        }
-        System.out.println();
-}
+
 /*Ejercicio 03:Crea un programa que cree una matriz de tamaño NxM (tamaño introducido por teclado) e introduzca en ella
 NxM valores (también introducidos por teclado). Luego deberá recorrer la matriz y al final mostrar por pantalla cuántos
 valores son mayores que cero, cuántos son menores que cero y cuántos son igual a cero.*/
@@ -56,6 +55,7 @@ int columnas = sc.nextInt();
 
 int matriz1 [][]= new int [filas][columnas];
 System.out.println("Introduce los valores de la matriz: ");
+
 for (int i = 0; i < filas; i++) {
     for (int j = 0; j < columnas; j++) {
         System.out.print("Posicion [" + i + "][" + j + "]: ");
