@@ -12,20 +12,17 @@ sc = new Scanner(System.in);
 
 int matriz[][] = new int[5][5];
 int numeros = 1; //valor inicial
-        for (int i = 0; i < 5; i++) { //aqui rellenamos las filas
-            for (int j = 0; j < 5; j++) { //aqui rellenamos las columnas
+
+
+        for (int i = 0; i < matriz.length; i++) { //aqui rellenamos las filas
+            for (int j = 0; j < matriz[i].length ; j++) { //aqui rellenamos las columnas
                 matriz[i][j] = numeros; //numero actual
-                numeros ++; //aumentamos el numero
-                //System.out.println(matriz[i][j]);
-            }
-        }
-        //
-        for (int i = 0; i < 5; i++) { //muestra la matriz por pantalla
-            for (int j = 0; j < 5; j++) {
-                System.out.print(matriz[i][j] + "\t");
+                numeros++; //aumentamos el numero
+                System.out.print(matriz[i][j] + " ");
             }
             System.out.println();
         }
+
 /* Ejercicio 02: Crea un programa que cree una matriz de 10x10 e introduzca los valores
  de las tablas de multiplicar del 1 al 10 (cada tabla en una fila).
  Luego mostrará la matriz por pantalla. */
@@ -37,9 +34,9 @@ int tabla[][] = new int[10][10];
 for (int i = 0; i < tabla.length; i++) { //fila
     for (int j = 0; j < tabla[i].length; j++) { //columna
         tabla[i][j] = (i + 1) * (j + 1);
-        System.out.println(tabla[i][j] + "");
+        System.out.print(tabla[i][j] + " ");
     }
-    System.out.println();
+    System.out.println(); //Este buvle for hay que hacerle siempre para recorre un array
 }
 
 /*Ejercicio 03:Crea un programa que cree una matriz de tamaño NxM (tamaño introducido por teclado) e introduzca en ella
@@ -48,38 +45,49 @@ valores son mayores que cero, cuántos son menores que cero y cuántos son igu
 System.out.println("Actividad 03");
 sc = new Scanner(System.in);
 
+double[][] matriz3;
+
 System.out.println("Introduce el numero de filas (N): ");
 int filas = sc.nextInt();
 System.out.println("Introduce el numero de columnas (M): ");
 int columnas = sc.nextInt();
 
-int matriz1 [][]= new int [filas][columnas];
-System.out.println("Introduce los valores de la matriz: ");
+if(n >0 && m>0){
+    matriz3 = new double[n][m];
 
-for (int i = 0; i < filas; i++) {
-    for (int j = 0; j < columnas; j++) {
-        System.out.print("Posicion [" + i + "][" + j + "]: ");
-        matriz1[i][j] = sc.nextInt();
-    }
-}
-int mayores = 0;
-int menores = 0;
-int ceros = 0;
+    int nPositivos = 0, nNegativos = 0, nNulos = 0;
+    for (int i = 0; i < matriz3.length; i++) {
+    for (int j = 0; j < matriz3[i].length; j++) {
 
-for (int i = 0; i < filas; i++) {
-    for (int j = 0; j < columnas; j++) {
-        if (matriz[i][j] > 0) {
-            mayores++;
-        } else if (matriz[i][j] < 0) {
-            menores++;
-        }else{
-            ceros++;
+    System.out.println("Ingrese el valor i= " + i + " j= "+j);
+    double valor = sc.nextDouble();
+    matriz3[i][j] = valor;
+
+         if(valor == 0){
+            nNulos++;
+             }else if(valor > 0){
+                nPositivos++;
+
+                }else {
+                   nNegativos++;
+                    }
+                }
+            }
+
+            for (int i = 0; i < matriz3.length; i++) {
+                for (int j = 0; j < matriz3[i].length; j++) {
+                    System.out.print(matriz3[i][j] + " ");
+                }
+                System.out.println();
+            }
+            System.out.println("Hay "+nPositivos + " valores positivos en la matriz");
+            System.out.println("Hay "+nNegativos + " valores negativos en la matriz");
+            System.out.println("Hay "+nNulos + " valores nulos en la matriz");
         }
-    }
-}
-System.out.println("Mayores que 0: " + mayores);
-System.out.println("Menores que 0: " + menores);
-System.out.println("Iguales que 0: " + ceros);
+        else{
+            System.out.print("Las dimensiones deben de ser positivas");
+        }
+
 
 /* Ejercicio 04: Necesitamos crear un programa para almacenar las notas de
 4 alumnos (llamados “Alumno 1”, “Alumno 2”, etc.) y 5 asignaturas.
@@ -130,6 +138,16 @@ Esta información debe guardarse en una única matriz. Luego se mostrará
  */
 System.out.println("Actividad 05");
 sc = new Scanner(System.in);
+
+int personas = 0;
+
+double[][] matriz2 = new double;
+
+
+
+
+
+
 
 
     }
