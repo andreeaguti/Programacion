@@ -5,14 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aabfcf20-a77e-4ca4-8c8e-274c98f9d0ff" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Actividad 2/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Actividad 2/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Actividad 2/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Actividad 2/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Actividad 2/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Actividad 2/Actividad 2.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Actividad 2/src/Main.java" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/UF1_ACTIVIDAD_04/UF1_ACTIVIDAD_04/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UF1_ACTIVIDAD_04/UF1_ACTIVIDAD_04/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UF1_ACTIVIDAD_04/UF1_ACTIVIDAD_04/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UF1_ACTIVIDAD_04/UF1_ACTIVIDAD_04/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UF1_ACTIVIDAD_04/UF1_ACTIVIDAD_04/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UF1_ACTIVIDAD_04/UF1_ACTIVIDAD_04/src/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UF2_ACTIVIDAD_07/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UF2_ACTIVIDAD_07/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UF2_ACTIVIDAD_07/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UF2_ACTIVIDAD_07/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UF2_ACTIVIDAD_07/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UF2_ACTIVIDAD_07/UF2_ACTIVIDAD_07.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UF2_ACTIVIDAD_07/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +69,7 @@
       <workItem from="1760513473842" duration="1607000" />
       <workItem from="1760594863093" duration="4203000" />
       <workItem from="1760599113036" duration="88000" />
+      <workItem from="1763536154125" duration="2000" />
     </task>
     <servers />
   </component>
