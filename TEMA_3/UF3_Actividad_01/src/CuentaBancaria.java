@@ -3,7 +3,7 @@ public class CuentaBancaria {
 
 //Creo los contadores que necesito
     private static final double saldoMinimo = -50.0;
-    private static final double maximoMovimientos = 100;
+    private static final int maximoMovimientos = 100;
     private static final double maximoHacienda = 3000.0;
     private static final int longitudIBAN = 24;
 
@@ -26,13 +26,51 @@ public CuentaBancaria (String IBAN, String titular) {
     this.numMovimientos = 0;
 }
 
-//Instrucción para que el usuario introduzca un IBAN correcto
+//Getters y setters
 
-public static boolean IbanCorrecto(String IBAN){
-    if (IBAN == null || IBAN.length() !=longitudIBAN){
-        return false;
-        System.out.println("Ingrese un IBAN correcto");
+    public String getIBAN() {
+        return IBAN;
     }
+    public String getTitular() {
+        return titular;
+    }
+    public double getSaldo() {
+        return saldo;
+    }
+public void mostrarDatosCuenta() {
+    System.out.println("\n--- DATOS DE LA CUENTA BANCARIA ---");
+    System.out.println("IBAN: " + IBAN);
+    System.out.println("Titular: " + titular);
+    System.out.println("Saldo: " + saldo + "€");
+    System.out.println("-----------------------------------");
+    }
+
+    public boolean ingresar (double cantidad){
+    if(cantidad <= 0){
+        System.out.println("La cantidad a ingresar debe ser mayor a 0");
+        return false;
+    }
+    this.saldo += cantidad; //actualizo el saldo
+
+        if (numMovimientos < maximoMovimientos){
+            Movimiento m = new Movimiento(numMovimientos + 1, "Ingreso", cantidad);
+
+            this.movimientos[numMovimientos] = m;
+            this.numMovimientos++; //incrementa el contador
+        }else {
+            System.out.println("Has superado el maximo de movimientos");
+        }
+        if (cantidad > maximoHacienda){
+            System.out.println("AVISO NOTIFICAR A HACIENDA; has ingresado mas de " + maximoHacienda "€");
+}
+        if (this.saldo < saldoMinimo){
+            System.out.println("AVISO SALDO NEGATIVO; saldo actual de "+ this.saldo "€");
+}
+        System.out.println("Ingreso realizado con exito");
+        return true;
+    }
+
+}
 
 
 

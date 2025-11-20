@@ -51,7 +51,7 @@ public class Main {
         System.out.print("Ingrese la dimension M de la matriz: ");
         int m = sc.nextInt();
 
-        if(n >0 && m>0){
+        if(n > 0 && m > 0){
             matriz3 = new double[n][m];
 
             int nPositivos = 0, nNegativos = 0, nNulos = 0;
