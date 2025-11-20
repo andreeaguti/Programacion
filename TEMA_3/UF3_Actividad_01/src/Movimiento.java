@@ -9,7 +9,7 @@ public class Movimiento {
     private final String tipo; //Ingreso o retirada
     private final double cantidad; //crear un array
 
-//Creo un contador para el ID del movimmiento y para asignnar fecha
+//Creo un contador para el ID del movimmiento y para asignar fecha
    private static int contadorMovimientos = 0;
    private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
@@ -35,7 +35,9 @@ public class Movimiento {
     public double getCantidad(){
         return this.cantidad;
     }
-//Para mostrar toda la inormació anterior
+
+//Para mostrar toda la información anterior
+
     public String infoMovimiento(){
         String infoMovimiento = "";
         infoMovimiento = "ID: " + this.ID + "\n";
