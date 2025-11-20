@@ -19,7 +19,7 @@ public class Movimiento {
         this.cantidad = cantidad;
 
         this.fecha = LocalDate.now().format(dtf);
-        this.ID = contadorMovimientos++; //Para que no empieze en cero
+        this.ID = ++contadorMovimientos; //Para que empieze en 1
     }
 
 //Defino los getter y setter de los anteriores atributos
