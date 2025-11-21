@@ -11,7 +11,7 @@ public class Movimiento {
 
 //Creo un contador para el ID del movimmiento y para asignar fecha
    private static int contadorMovimientos = 0;
-   private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+   private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 //Creo constructores con los atributos que se necesitan, ID y fecha se generan automáticamente
     public Movimiento (String tipo, double cantidad) {
