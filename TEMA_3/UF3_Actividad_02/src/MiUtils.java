@@ -1,4 +1,4 @@
-package PACKAGE_NAME;
+import java.util.Scanner;
 
 public class MiUtils {
     //Generacion aleatoria de letras en mayusculas
@@ -62,6 +62,31 @@ public class MiUtils {
         } while (!isOk);
         return texto;
     }
+    public static String comprobarPatronNumSocio(String patron, String mensaje){
+        boolean isOk = false;
+        String texto;
+        do {
+            texto = MiUtils.leerTextoPantalla(mensaje);
+            isOk = MiUtils.comprobarPatron(patron, texto);
+            if(!isOk){
+                MiUtils.imprimir("El formato es incorrecto");
+            }
+        } while (!isOk);
+        return texto;
+    }
+    public static String comprobarPatronDNI(String patron, String mensaje){
+        boolean isOk = false;
+        String texto;
+        do {
+            texto = MiUtils.leerTextoPantalla(mensaje);
+            isOk = MiUtils.comprobarPatron(patron, texto);
+            if(!isOk){
+                MiUtils.imprimir("El formato es incorrecto");
+            }
+        } while (!isOk);
+        return texto;
+    }
 
 
 }
+
