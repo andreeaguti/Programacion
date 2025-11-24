@@ -14,14 +14,14 @@ public class Cliente {
     private Pelicula [] peliculasAlquiladas;
 
     //CREAMOS LOS CONSTRUCTORES
-    public Cliente (String dni, String nombre, String numSocio, String direccion, LocalDate fechaNacimiento, LocalDate fechaBaja){
+    public Cliente (String dni, String nombre, String numSocio, String direccion, LocalDate fechaNacimiento){
         this.setdni(dni);
         this.nombre = nombre;
         this.setnumSocio(numSocio);
         this.direccion = direccion;
         this.setfechaNacimiento(fechaNacimiento);
         this.fechaBaja = null;
-        this.peliculasAlquiladas = new Pelicula[100];
+        this.peliculasAlquiladas = new Pelicula[10];
     }
     //DEFINO GETTERS
     public String getDni() {
