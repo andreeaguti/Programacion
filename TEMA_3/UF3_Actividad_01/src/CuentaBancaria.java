@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class CuentaBancaria {
 
 //Creo los contadores que necesito
@@ -10,8 +13,8 @@ public class CuentaBancaria {
     private final Movimiento [] movimientos;
 
 //Lo primero hacemos la encapsulación con los atributos
-    private final String IBAN;
-    private final String titular;
+    private String IBAN;
+    private String titular;
     private double saldo;
     private int numMovimientos;
     private boolean CuentaValida; //Para comprobar que la cuenta es correcta
@@ -23,35 +26,27 @@ public CuentaBancaria (String IBAN, String titular) {
     this.numMovimientos = 0;
     this.CuentaValida = false;
 
-    //VALIDACION PARA EL STRING TITULAR
-    if (titular == null || titular.length() == 0) {
-    System.out.println("El nombre del titular no puede estar vacio");
+    //DECLARO COMO NULL A TITULAR E IBAN
     this.IBAN = null;
     this.titular = null;
+
+//VALIDACION PARA EL STRING TITULAR
+    if (titular == null || titular.length() == 0) {
+        System.out.println("El nombre del titular no puede estar vacio");
     return;
     }
 
-    //VALIDACION PARA EL IBAN
-
-    String formatoIban = IBAN.toUpperCase();
-
-    if (!formatoIban.matches("^[A-Z]{2}\\d{22}$")) {
-        System.out.println("Formato de iban no valido");
-        this.IBAN = null;
-        this.titular = null;
-        return;
-    }
-    //SI LOS DATOS ESTAN CORRECTOS:
+//SI LOS DATOS ESTAN CORRECTOS:
     this.CuentaValida = true;
-    this.IBAN = formatoIban;
     this.titular = titular;
+    this.IBAN = IBAN.toUpperCase();
+    System.out.println("Cuenta creada correctamente");
 }
 
 //Getters y setters
     public boolean getcuentaValida () {
-    return CuentaValida;
+        return CuentaValida;
     }
-
     public String getIBAN() {
         return IBAN;
     }
@@ -65,6 +60,7 @@ public CuentaBancaria (String IBAN, String titular) {
 public void mostrarDatosCuenta() {
     if(!CuentaValida){
         System.out.println("La cuenta no es válida");
+        return;
     }
     System.out.println("\n--- DATOS DE LA CUENTA BANCARIA ---");
     System.out.println("IBAN: " + IBAN);
@@ -74,31 +70,33 @@ public void mostrarDatosCuenta() {
 
     //PARA INGRESAR
     public boolean ingresar (double cantidad){
-    if(cantidad <= 0){
-        System.out.println("La cantidad a ingresar debe ser mayor a 0");
+    if(!this.CuentaValida){
+        System.out.println("ERROR: La cuenta no es válida.");
         return false;
     }
-    this.saldo += cantidad; //actualizo el saldo
-
-        if (numMovimientos < maximoMovimientos){
-            Movimiento m = new Movimiento("Ingreso", cantidad);
-
-            this.movimientos[numMovimientos] = m;
-            this.numMovimientos++; //incrementa el contador
-        }else {
-            System.out.println("Has superado el maximo de movimientos");
+    if (cantidad <= 0) {
+        System.out.println("ERROR: No puedes ingresar una cantidad menor o igual a 0");
+        return false;
+    }
+    this.saldo += cantidad;
+    //Registro el movimiento de ingreso
+        if (numMovimientos < maximoMovimientos) {
+        Movimiento m = new Movimiento("Ingreso", cantidad);
+        this.movimientos[numMovimientos] = m;
+        numMovimientos++;
+        }else{
+            System.out.println("Has superado el máximo de movimientos");
         }
 
-        //Ahora hago el aviso de hacienda
-        if (cantidad > maximoHacienda){
-            System.out.println("AVISO NOTIFICAR A HACIENDA; has ingresado mas de " + maximoHacienda + "€");
+//CREO LOS AVISOS
+    if (cantidad > maximoHacienda){
+        System.out.println("AVISO NOTIFICAR A HACIENDA; has ingresado mas de " + maximoHacienda + "€");
+    }
+    if (this.saldo < 0){
+        System.out.println("AVISO SALDO NEGATIVO; saldo actual de "+ this.saldo + "€");
 }
-        //Ahora el aviso para el saldo negativo
-        if (this.saldo < saldoMinimo){
-            System.out.println("AVISO SALDO NEGATIVO; saldo actual de "+ this.saldo + "€");
-}
-        System.out.println("Ingreso realizado con exito");
-        return true;
+    System.out.println("Ingreso realizado con exito");
+    return true;
     }
 
     //PARA REITRAR
@@ -117,6 +115,7 @@ public void mostrarDatosCuenta() {
 
     double nuevoSaldo = this.saldo - cantidad;
 
+
     if (nuevoSaldo < saldoMinimo){
         System.out.println("ERROR: Supera el saldo maximo en negativo ");
         return false;
@@ -125,7 +124,7 @@ public void mostrarDatosCuenta() {
 
     //REGISTRO DE SALDOS
     if (numMovimientos < maximoMovimientos){
-        Movimiento m = new Movimiento("Retirado", cantidad);
+        Movimiento m = new Movimiento("Retirada", cantidad);
         this.movimientos[numMovimientos] = m;
         this.numMovimientos++;
     }else {
@@ -133,7 +132,8 @@ public void mostrarDatosCuenta() {
         }
 
     //AVISOS
-    if(this.saldo <= 0){
+
+    if (this.saldo < 0){
         System.out.println("AVISO: SALGO NEGATIVO");
     }
 
@@ -144,6 +144,7 @@ public void mostrarDatosCuenta() {
     System.out.println("Retirada realizada con exito ✅");
     return true;
     }
+
 public void mostrarMovimientos(){
     if(!CuentaValida){
         System.out.println("Error: La cuenta no es valida");
@@ -153,18 +154,17 @@ public void mostrarMovimientos(){
         System.out.println("No hay movimientos en la cuenta");
         return;
     }
+
     System.out.println("\n*** HISTORIAL DE MOVIMIENTOS ***");
     System.out.println("-------------------------------------------------");
     System.out.println("| ID   | Fecha      | Tipo     | Cantidad (€)   |");
     System.out.println("-------------------------------------------------");
 
     for (int i = 0; i < numMovimientos; i++) {
+        Movimiento m = movimientos[i];
+        System.out.println(m.getID() + m.getFecha() + m.getTipo() + m.getCantidad());
     }
     System.out.println("-------------------------------------------------");
 
-
+    }
 }
-
-
-}
-

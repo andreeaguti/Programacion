@@ -1,7 +1,10 @@
 import java.util.Scanner;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Main {
     private static final Scanner sc = new Scanner(System.in);
+
     //Creo variable para la cuenta bancaria
     private static CuentaBancaria cuenta = null;
 
@@ -14,17 +17,18 @@ public class Main {
             mostrarMenu();
     }
         sc.close();
+
+    MiUtils.comprobarPatronRepetidamente("^[A-Z]{2}\\d{22}$", "Introduzca el numero de cuenta");
 }
 private static boolean crearCuenta() {
 
 while (true) {
-    System.out.print("Ingrese el IBAN de la cuenta (2 letras y 22 numeros): \n");
-    String IBAN = sc.nextLine();
+    String IbanValido = MiUtils.comprobarPatronRepetidamente("^[A-Z]{2}\\d{22}$", "Introduzca el numero de cuenta");
 
     System.out.println("Ingrese el nombre del titular");
     String titular = sc.nextLine();
 
-    cuenta = new CuentaBancaria(IBAN, titular);
+    cuenta = new CuentaBancaria(IbanValido, titular);
 
     if (cuenta.getcuentaValida()) {
     System.out.println( "\n CUENTA CREADA ");
@@ -35,8 +39,20 @@ while (true) {
     }
   }
 }
+private static void realizarIngreso() {
+    System.out.println("Introduzca la cantidad a ingresar: ");
+    double cantidadIngresar = sc.nextDouble();
+    cuenta.ingresar(cantidadIngresar);
+}
+ private static void realizarRetirada() {
+        System.out.println("Introduzca la cantidad a retirar: ");
+        double cantidadRetirar = sc.nextDouble();
+        cuenta.ingresar(cantidadRetirar);
+    }
 private static void mostrarMenu() {
         String opcion = "8";
+
+
 do {
     System.out.println("Selecciona una opcion");
     System.out.println("1. Datos de la cuenta ");
@@ -48,19 +64,18 @@ do {
     System.out.println("7. Mostar historial de movimientos");
     System.out.println("8. Salir");
     opcion = sc.nextLine();
-
     switch (opcion) {
         case "1":
             cuenta.mostrarDatosCuenta();
             break;
         case "2":
-            System.out.println("IBAN" + cuenta.getIBAN());
+            System.out.println("IBAN: " + cuenta.getIBAN());
             break;
         case "3":
-            System.out.println("Titular" + cuenta.getTitular());
+            System.out.println("Titular: " + cuenta.getTitular());
             break;
         case "4":
-            System.out.println("Saldo" + cuenta.getSaldo());
+            System.out.println("Saldo: " + cuenta.getSaldo());
             break;
         case "5":
             realizarIngreso();
@@ -69,7 +84,7 @@ do {
             realizarRetirada();
             break;
         case "7":
-            cuenta.infoMovimientos();
+
             break;
         case "8":
             System.out.println("Cerrando programa...");
