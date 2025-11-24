@@ -1,5 +1,7 @@
 package PACKAGE_NAME;
 
+import java.util.Scanner;
+
 public class MiUtils {
     //Generacion aleatoria de letras en mayusculas
     public static char generarLetraAleatoria(){
