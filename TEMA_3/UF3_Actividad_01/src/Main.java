@@ -5,7 +5,6 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
         CuentaBancaria cuenta = null;
-        int opcion = -1;
         boolean datosValidos = false;
 
         // VALIDACIÓN DE LA CUENTA

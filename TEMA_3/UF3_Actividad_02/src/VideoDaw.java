@@ -89,5 +89,11 @@ public String mostrarClientesRegistrados(){
     }
     return mostrarClientesRegistrados;
 }
+//METODO PARA ALQUILAR UNA PELICULA, COMPROBAR QUE ESA PELICULA NO ESTÉ YA ALQUILADA
+    public String alquilarPelicula () {
+    String alquilarPelicula = "";
+    int contador = 0;
+    if (is)
+    }
 
 }

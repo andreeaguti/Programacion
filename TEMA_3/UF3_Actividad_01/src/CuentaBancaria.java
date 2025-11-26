@@ -2,8 +2,8 @@ public class CuentaBancaria {
 
 //ENCAPSULACION DE ATRIBUTOS
 
-    private final String IBAN;
-    private final String titular;
+    private String IBAN;
+    private String titular;
     private double saldo;
     private Movimiento [] movimientos;
     private int contadorMovimientos = 0;
@@ -21,8 +21,10 @@ public class CuentaBancaria {
 
         this.IBAN = IBAN;
         this.titular = titular;
+
         this.saldo = 0;
         this.movimientos = new Movimiento[100];
+        this.contadorMovimientos = 0;
 
     }
 //GETTERS Y SETTERS

@@ -4,14 +4,14 @@ import java.time.format.DateTimeFormatter;
 public class Movimiento {
 
 //Lo primero hacemos la encapsulación
-    private final int ID;
-    private final String fecha;
-    private final String tipo; //Ingreso o retirada
-    private final double cantidad; //crear un array
+    private int ID;
+    private String fecha;
+    private String tipo; //Ingreso o retirada
+    private double cantidad; //crear un array
 
 //Creo un contador para el ID del movimmiento y para asignar fecha
    private static int contadorMovimientos = 0;
-   private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+   private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 //Creo constructores con los atributos que se necesitan, ID y fecha se generan automáticamente
     public Movimiento (String tipo, double cantidad) {
@@ -19,12 +19,13 @@ public class Movimiento {
         this.cantidad = cantidad;
 
         this.fecha = LocalDate.now().format(dtf);
-        this.ID = ++contadorMovimientos; //Para que empieze en 1
+        this.ID = contadorMovimientos;
+        contadorMovimientos++;
     }
 
 //Defino los getter y setter de los anteriores atributos
     public int getID(){
-        return ID;
+        return this.ID;
     }
     public String getFecha(){
         return this.fecha;
