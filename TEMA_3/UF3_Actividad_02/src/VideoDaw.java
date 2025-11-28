@@ -8,6 +8,7 @@ public class VideoDaw {
     private Pelicula [] peliculasRegistradas;
     private Cliente [] clientesRegistrados;
 
+
 //CREAMOS LOS CONSTRUCTORES
 public VideoDaw (String cif, String direccion){
     this.cif = cif;
@@ -34,6 +35,7 @@ public VideoDaw (String cif, String direccion){
         return this.clientesRegistrados;
     }
 
+
 //DEFINO SETTERS
     //Voy a crear setter de direccion y de los 2 arrays
 public void setDireccion (String direccion) {
@@ -49,6 +51,7 @@ public void setPeliculasRegistradas (Pelicula [] peliculasRegistradas){
 public void setClientesRegistrados (Cliente [] clientesRegistrados){
         this.clientesRegistrados = clientesRegistrados;
     }
+
 //CREO METODO PARA MOSTRAR LA INFORMACION DEL VIDEOCLUB
 public String mostrarInfoVideoClub() {
     String mostrarInfoVideoClub = "";
@@ -59,6 +62,7 @@ public String mostrarInfoVideoClub() {
     mostrarInfoVideoClub += "Clientes registrados: " + this.getClientesRegistrados() + "\n";
     return mostrarInfoVideoClub;
 }
+
 //METODO PARA VER LAS PELICULAS REGISTRADAS
 public String mostrarPeliculasRegistradas(){
     String mostrarPeliculasRegistradas = "";
@@ -74,6 +78,7 @@ public String mostrarPeliculasRegistradas(){
     }
     return mostrarPeliculasRegistradas;
     }
+
 //METODO PARA VER LOS CLIENTES REGISTRADOS
 public String mostrarClientesRegistrados(){
     String mostrarClientesRegistrados = "";
@@ -89,11 +94,58 @@ public String mostrarClientesRegistrados(){
     }
     return mostrarClientesRegistrados;
 }
-//METODO PARA ALQUILAR UNA PELICULA, COMPROBAR QUE ESA PELICULA NO ESTÉ YA ALQUILADA
-    public String alquilarPelicula () {
-    String alquilarPelicula = "";
-    int contador = 0;
-    if (is)
+//me falta comprobar que no esté repetido
+
+//METODO PARA COMPROBAR QUE ESA PELICULA NO ESTÉ ALQUILADA
+    public boolean peliculaAlquilada (Pelicula pelicula) {
+    boolean retorno = false; //de primeras no está alquilada
+    if (pelicula == null) {
+        retorno = true;
+    } else if (pelicula.isAlquilada()) {
+        retorno = true;
     }
+    return retorno;
+    }
+
+//METODO PARA ALQUILAR UNA PELICULA
+
+public void alquilarPelicula (Pelicula pelicula, Cliente cliente) {
+    if (peliculaAlquilada(pelicula)) {
+        System.out.println("No se puede alquilar");
+    }else {
+        pelicula.setAlquilada(true);
+        cliente.agregarPelicula(pelicula);
+        System.out.println("Pelicula alquilada!!");
+    }
+}
+//METODO PARA DEVOLVER UNA PELICULA
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

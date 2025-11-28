@@ -13,6 +13,8 @@ public class Cliente {
     private LocalDate fechaBaja;
     private Pelicula[] peliculasAlquiladas;
 
+    private int contadorPeliculasAlquiladas;
+
     //CREAMOS LOS CONSTRUCTORES
     public Cliente(String dni, String nombre, String numSocio, String direccion, LocalDate fechaNacimiento) {
         this.dni = dni;
@@ -82,6 +84,7 @@ public class Cliente {
         return mostrarInfoCliente;
     }
 
+
     //METODO PARA MOSTRAR ULTIMAS PELICULAS ALQUILADAS
     public String mostrarPeliculasAlquiladas() {
         String mostrarPeliculasAlquiladas = "";
@@ -97,5 +100,25 @@ public class Cliente {
             mostrarPeliculasAlquiladas += "El cliente no tiene ninguna pelicula alquilada";
         }
         return mostrarPeliculasAlquiladas;
+    }
+
+
+//AGREGAR PELICULAS ALQUILADAS
+
+public void agregarPelicula (Pelicula pelicula) {
+        if (this.contadorPeliculasAlquiladas < this.peliculasAlquiladas.length ) {
+            this.peliculasAlquiladas [this.contadorPeliculasAlquiladas] = pelicula;
+        }else if (this.contadorPeliculasAlquiladas >= this.peliculasAlquiladas.length) {
+            this.ampliarDimensionPeliculas();
+            this.peliculasAlquiladas[this.contadorPeliculasAlquiladas] = pelicula;
+        }
+    this.contadorPeliculasAlquiladas++;
+}
+private void ampliarDimensionPeliculas(){
+        Pelicula[] peliculasAlquiladasAux = new Pelicula[this.peliculasAlquiladas.length + 10];
+        for(int i = 0; i < this.peliculasAlquiladas.length; i++){
+            peliculasAlquiladasAux[i] = this.peliculasAlquiladas[i];
+        }
+        this.peliculasAlquiladas = peliculasAlquiladasAux;
     }
 }
