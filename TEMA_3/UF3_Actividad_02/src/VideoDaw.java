@@ -8,6 +8,7 @@ public class VideoDaw {
     private Pelicula [] peliculasRegistradas;
     private Cliente [] clientesRegistrados;
 
+    private int contadorClientesRegistrados;
 
 //CREAMOS LOS CONSTRUCTORES
 public VideoDaw (String cif, String direccion){
@@ -52,6 +53,8 @@ public void setClientesRegistrados (Cliente [] clientesRegistrados){
         this.clientesRegistrados = clientesRegistrados;
     }
 
+
+
 //CREO METODO PARA MOSTRAR LA INFORMACION DEL VIDEOCLUB
 public String mostrarInfoVideoClub() {
     String mostrarInfoVideoClub = "";
@@ -82,19 +85,49 @@ public String mostrarPeliculasRegistradas(){
 //METODO PARA VER LOS CLIENTES REGISTRADOS
 public String mostrarClientesRegistrados(){
     String mostrarClientesRegistrados = "";
-    int contador = 0;
     mostrarClientesRegistrados += "Los clientes registrados son:" + "\n";
-    for (Cliente cliente : this.clientesRegistrados) {
-        if (cliente == null || contador == 0) {
-            System.out.println("Por el momento no hay clientes registrados");
-        }else {
-            contador++;
-            mostrarClientesRegistrados += cliente.mostrarInfoCliente();
-        }
+
+    if (this.contadorClientesRegistrados == 0) {
+        System.out.println("No hay clientes registrados");
+    }
+    for (int i=0; i<this.contadorClientesRegistrados; i++) {
+        mostrarClientesRegistrados += "Cliente" + (i + 1) + "\n";
+        mostrarClientesRegistrados += this.clientesRegistrados[i].mostrarInfoCliente();
     }
     return mostrarClientesRegistrados;
 }
-//me falta comprobar que no esté repetido
+//METODO PARA REGISTRAR CLIENTES
+    public void agregarCliente (Cliente cliente) {
+    if (this.existeCliente(cliente)) {
+        System.out.println("El cliente ya existe");
+    }
+        if (this.contadorClientesRegistrados < this.clientesRegistrados.length) {
+            this.clientesRegistrados[this.contadorClientesRegistrados] = cliente;
+        }else if (this.contadorClientesRegistrados >= this.clientesRegistrados.length) {
+            this.ampliarDimensionClientes();
+            this.clientesRegistrados[this.contadorClientesRegistrados] = cliente;
+        }
+        this.contadorClientesRegistrados++;
+        System.out.println("Cliente " + cliente.getNombre() + " registrado");
+    }
+
+    private void ampliarDimensionClientes(){
+        Cliente[] clientesRegistradosAux = new Cliente[this.clientesRegistrados.length + 10];
+        for(int i = 0; i < this.clientesRegistrados.length; i++){
+            clientesRegistradosAux[i] = this.clientesRegistrados[i];
+        }
+        this.clientesRegistrados = clientesRegistradosAux;
+    }
+
+    public boolean existeCliente (Cliente cliente){
+    for (int i = 0; i < this.contadorClientesRegistrados; i++){
+        if (this.clientesRegistrados[i].getDni().equals(cliente.getDni())){
+            return true;
+        }
+    }
+    return false;
+}
+
 
 //METODO PARA COMPROBAR QUE ESA PELICULA NO ESTÉ ALQUILADA
     public boolean peliculaAlquilada (Pelicula pelicula) {
@@ -108,7 +141,6 @@ public String mostrarClientesRegistrados(){
     }
 
 //METODO PARA ALQUILAR UNA PELICULA
-
 public void alquilarPelicula (Pelicula pelicula, Cliente cliente) {
     if (peliculaAlquilada(pelicula)) {
         System.out.println("No se puede alquilar");
@@ -117,35 +149,7 @@ public void alquilarPelicula (Pelicula pelicula, Cliente cliente) {
         cliente.agregarPelicula(pelicula);
         System.out.println("Pelicula alquilada!!");
     }
+
 }
-//METODO PARA DEVOLVER UNA PELICULA
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

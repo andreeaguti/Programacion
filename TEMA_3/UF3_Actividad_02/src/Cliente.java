@@ -1,5 +1,5 @@
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+
 
 public class Cliente {
 
@@ -14,6 +14,7 @@ public class Cliente {
     private Pelicula[] peliculasAlquiladas;
 
     private int contadorPeliculasAlquiladas;
+
 
     //CREAMOS LOS CONSTRUCTORES
     public Cliente(String dni, String nombre, String numSocio, String direccion, LocalDate fechaNacimiento) {
@@ -103,7 +104,7 @@ public class Cliente {
     }
 
 
-//AGREGAR PELICULAS ALQUILADAS
+//METODO PARA AGREGAR PELICULAS ALQUILADAS
 
 public void agregarPelicula (Pelicula pelicula) {
         if (this.contadorPeliculasAlquiladas < this.peliculasAlquiladas.length ) {
@@ -122,3 +123,4 @@ private void ampliarDimensionPeliculas(){
         this.peliculasAlquiladas = peliculasAlquiladasAux;
     }
 }
+
