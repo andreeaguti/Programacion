@@ -8,10 +8,7 @@ public class Main {
         String numSocioValido = MiUtils.comprobarPatronNumSocio("S-[0-9]{4}","Introduzca su numero de socio");
         String dniValido = MiUtils.comprobarPatronDNI("[0-9]{8}[A-Z]$","Introduzca su dni");
 
-//CREO EL MENU PRINCIPAL
-int opcion = 0;
-
-
-
+// METODO EN CLASE CLIENTE PARA ELIMINAR PELICULA
+// METODO EN VIDEODAW PARA DEVOLVER PELICULA
     }
 }

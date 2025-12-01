@@ -1,6 +1,5 @@
 import java.time.LocalDate;
 
-
 public class Cliente {
 
     //HACEMOS LA ENCAPSULACION
@@ -122,5 +121,7 @@ private void ampliarDimensionPeliculas(){
         }
         this.peliculasAlquiladas = peliculasAlquiladasAux;
     }
+//METODO PARA ELIMINAR PELICULA ALQUILADA
+
 }
 

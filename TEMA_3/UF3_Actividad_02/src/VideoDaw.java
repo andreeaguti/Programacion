@@ -16,7 +16,7 @@ public VideoDaw (String cif, String direccion){
     this.direccion = direccion;
     this.fechaAlta = LocalDate.now();
     this.peliculasRegistradas = new Pelicula [10];
-    this.clientesRegistrados = new Cliente [100];
+    this.clientesRegistrados = new Cliente [20];
     }
 
 //DEFINO GETTERS
@@ -54,6 +54,7 @@ public void setClientesRegistrados (Cliente [] clientesRegistrados){
     }
 
 
+//METODOS ✅
 
 //CREO METODO PARA MOSTRAR LA INFORMACION DEL VIDEOCLUB
 public String mostrarInfoVideoClub() {
@@ -82,25 +83,11 @@ public String mostrarPeliculasRegistradas(){
     return mostrarPeliculasRegistradas;
     }
 
-//METODO PARA VER LOS CLIENTES REGISTRADOS
-public String mostrarClientesRegistrados(){
-    String mostrarClientesRegistrados = "";
-    mostrarClientesRegistrados += "Los clientes registrados son:" + "\n";
-
-    if (this.contadorClientesRegistrados == 0) {
-        System.out.println("No hay clientes registrados");
-    }
-    for (int i=0; i<this.contadorClientesRegistrados; i++) {
-        mostrarClientesRegistrados += "Cliente" + (i + 1) + "\n";
-        mostrarClientesRegistrados += this.clientesRegistrados[i].mostrarInfoCliente();
-    }
-    return mostrarClientesRegistrados;
-}
-//METODO PARA REGISTRAR CLIENTES
+    //METODO PARA REGISTRAR CLIENTES
     public void agregarCliente (Cliente cliente) {
-    if (this.existeCliente(cliente)) {
-        System.out.println("El cliente ya existe");
-    }
+        if (this.existeCliente(cliente)) {
+            System.out.println("El cliente ya existe");
+        }
         if (this.contadorClientesRegistrados < this.clientesRegistrados.length) {
             this.clientesRegistrados[this.contadorClientesRegistrados] = cliente;
         }else if (this.contadorClientesRegistrados >= this.clientesRegistrados.length) {
@@ -120,14 +107,28 @@ public String mostrarClientesRegistrados(){
     }
 
     public boolean existeCliente (Cliente cliente){
-    for (int i = 0; i < this.contadorClientesRegistrados; i++){
-        if (this.clientesRegistrados[i].getDni().equals(cliente.getDni())){
-            return true;
+        for (int i = 0; i < this.contadorClientesRegistrados; i++){
+            if (this.clientesRegistrados[i].getDni().equals(cliente.getDni())){
+                return true;
+            }
         }
+        return false;
     }
-    return false;
-}
 
+//METODO PARA VER LOS CLIENTES REGISTRADOS
+public String mostrarClientesRegistrados(){
+    String mostrarClientesRegistrados = "";
+    mostrarClientesRegistrados += "Los clientes registrados son:" + "\n";
+
+    if (this.contadorClientesRegistrados == 0) {
+        System.out.println("No hay clientes registrados");
+    }
+    for (int i=0; i<this.contadorClientesRegistrados; i++) {
+        mostrarClientesRegistrados += "Cliente" + (i + 1) + "\n";
+        mostrarClientesRegistrados += this.clientesRegistrados[i].mostrarInfoCliente();
+    }
+    return mostrarClientesRegistrados;
+}
 
 //METODO PARA COMPROBAR QUE ESA PELICULA NO ESTÉ ALQUILADA
     public boolean peliculaAlquilada (Pelicula pelicula) {
@@ -149,7 +150,31 @@ public void alquilarPelicula (Pelicula pelicula, Cliente cliente) {
         cliente.agregarPelicula(pelicula);
         System.out.println("Pelicula alquilada!!");
     }
-
 }
+//METODO PARA DAR DE BAJA A UN CLIENTE
+public boolean darBajaCliente (String dniBaja) {
+    //recorro el array buscando el dni
+    for (int i = 0; i < this.contadorClientesRegistrados; i++) {
+        if (this.clientesRegistrados[i].getDni().equals(dniBaja)) {
+            this.clientesRegistrados[i].setFechaBaja(LocalDate.now());
+        //eliminamos esa posición del array
+            for (int j = i; j < this.contadorClientesRegistrados -1; j++) {
+                this.clientesRegistrados[j] = this.clientesRegistrados[j +1];
+            }
+            this.clientesRegistrados[this.contadorClientesRegistrados -1] = null;
+            this.contadorClientesRegistrados--; //le restamos al contador el cliente eliminado
+            System.out.println("Cliente con DNI:" +  dniBaja + "dado de baja");
+            return true;
+        }
+    }
+    System.out.println("Cliente no encontrado");
+    return false;
+}
+//METODO PARA DEVOLVER UNA PELÍCULA
+
+
+
+
+
 
 }
