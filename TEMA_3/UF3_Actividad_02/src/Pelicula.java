@@ -70,7 +70,9 @@ public void setAlquilada(boolean isAlquilada) {
     this.isAlquilada = isAlquilada;
 }
 
-    //AHORA CREO UN METODO PARA MOSTRAR TODA LA INFORMACIÓN DE ESA PELICULA
+//METODOS ✅
+
+    //METODO PARA MOSTRAR TODA LA INFORMACIÓN DE ESA PELICULA
 
 public String mostrarInfoPelicula(){
     String mostrarInfoPelicula = "";

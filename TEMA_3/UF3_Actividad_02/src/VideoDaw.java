@@ -9,6 +9,7 @@ public class VideoDaw {
     private Cliente [] clientesRegistrados;
 
     private int contadorClientesRegistrados;
+    private int contadorPeliculasRegistradas;
 
 //CREAMOS LOS CONSTRUCTORES
 public VideoDaw (String cif, String direccion){
@@ -109,6 +110,35 @@ public String mostrarPeliculasRegistradas(){
     public boolean existeCliente (Cliente cliente){
         for (int i = 0; i < this.contadorClientesRegistrados; i++){
             if (this.clientesRegistrados[i].getDni().equals(cliente.getDni())){
+                return true;
+            }
+        }
+        return false;
+    }
+    //METODO PARA REGISTRAR PELICULAS
+    public void agregarPelicula (Pelicula pelicula) {
+        if (this.existePelicula(pelicula)) {
+            System.out.println("La pelicula ya está registrada. ");
+        }
+        if (this.contadorPeliculasRegistradas < this.peliculasRegistradas.length) {
+            this.peliculasRegistradas[this.contadorPeliculasRegistradas] = pelicula;
+        }else if (this.contadorPeliculasRegistradas >= this.peliculasRegistradas.length) {
+            this.ampliarDimensionPeliculas();
+            this.peliculasRegistradas[this.contadorPeliculasRegistradas] = pelicula;
+        }
+        this.contadorPeliculasRegistradas++;
+        System.out.println("Pelicula " + pelicula.getTitulo() + " registrada");
+    }
+    private void ampliarDimensionPeliculas(){
+        Cliente[] clientesRegistradosAux = new Cliente[this.clientesRegistrados.length + 10];
+        for(int i = 0; i < this.clientesRegistrados.length; i++){
+            clientesRegistradosAux[i] = this.clientesRegistrados[i];
+        }
+        this.clientesRegistrados = clientesRegistradosAux;
+    }
+    public boolean existePelicula (Pelicula pelicula) {
+        for (int i = 0; i < this.contadorPeliculasRegistradas; i++){
+            if (this.peliculasRegistradas[i].getCodigo().equals(pelicula.getCodigo())){
                 return true;
             }
         }

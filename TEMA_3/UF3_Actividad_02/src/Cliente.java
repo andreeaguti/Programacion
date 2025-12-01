@@ -72,6 +72,8 @@ public class Cliente {
         this.peliculasAlquiladas = peliculasAlquiladas;
     }
 
+//METODOS ✅
+
     //METODO PARA MOSTRAR INFORMACIÓN DEL CLIENTE
     public String mostrarInfoCliente() {
         String mostrarInfoCliente = "";
@@ -121,7 +123,24 @@ private void ampliarDimensionPeliculas(){
         }
         this.peliculasAlquiladas = peliculasAlquiladasAux;
     }
-//METODO PARA ELIMINAR PELICULA ALQUILADA
 
+//METODO PARA ELIMINAR PELICULA ALQUILADA
+public boolean eliminarPelicula (String peliculaEliminada) {
+        for (int i = 0; i < this.contadorPeliculasAlquiladas; i++) { //recorro array buscando la pelicula que quiero eliminar
+            if (this.peliculasAlquiladas[i].equals(peliculaEliminada)) {
+                this.peliculasAlquiladas[i].setFechaBaja(LocalDate.now());
+                //eliminamos esa posicion en el array
+                for (int j = i; j < this.contadorPeliculasAlquiladas -1; j++) {
+                    this.peliculasAlquiladas[j] = this.peliculasAlquiladas[j +1];
+                }
+                this.peliculasAlquiladas[this.contadorPeliculasAlquiladas -1] =null;
+                this.contadorPeliculasAlquiladas--;
+                System.out.println("Pelicula devuelta con exito");
+                return true;
+            }
+        }
+        return false;
 }
+}
+
 
