@@ -130,11 +130,11 @@ public String mostrarPeliculasRegistradas(){
         System.out.println("Pelicula " + pelicula.getTitulo() + " registrada");
     }
     private void ampliarDimensionPeliculas(){
-        Cliente[] clientesRegistradosAux = new Cliente[this.clientesRegistrados.length + 10];
-        for(int i = 0; i < this.clientesRegistrados.length; i++){
-            clientesRegistradosAux[i] = this.clientesRegistrados[i];
+        Pelicula[] peliculasRegistradasAux = new Pelicula[this.peliculasRegistradas.length + 10];
+        for(int i = 0; i < this.peliculasRegistradas.length; i++){
+            peliculasRegistradasAux[i] = this.peliculasRegistradas[i];
         }
-        this.clientesRegistrados = clientesRegistradosAux;
+        this.peliculasRegistradas = peliculasRegistradasAux;
     }
     public boolean existePelicula (Pelicula pelicula) {
         for (int i = 0; i < this.contadorPeliculasRegistradas; i++){

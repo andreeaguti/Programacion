@@ -1,3 +1,5 @@
+import java.beans.JavaBean;
+import java.time.LocalDate;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
@@ -17,12 +19,15 @@ public class Main {
                     System.out.println(videoDaw.mostrarInfoVideoClub());
                     break;
                 case "2":
-                    System.out.print("Ingrese el codigo de la pelicula: ");
-                    String codigo = sc.nextLine();
-                    System.out.print("Ingrese el titulo de la pelicula: ");
-                    String titulo = sc.nextLine();
+                    if (videoDaw == null) {
+                        System.out.println("Primero debe crear el videoclub (Opción 1)");
+                        break;
+                    }
+                    //Pido el código y el titulo
+                    String codigo = MiUtils.comprobarPatronRepetidamente("^P-\\d{4}$", "Ingrese el codigo de la pelicula:");
+                    String titulo = MiUtils.comprobarPatronRepetidamente(".+", "Ingrese el titulo de la pelicula:");
 
-                    Genero[] generosDisponibles = Genero.values();
+                    Genero[] generosDisponibles = Genero.values(); //devuelve la colección
                     Genero generoSeleccionado = null;
                     int opcionGeneros = -1;
                     do {
@@ -45,16 +50,27 @@ public class Main {
                         }
                     } while (generoSeleccionado == null);
                     Pelicula pelicula = new Pelicula(codigo, titulo, generoSeleccionado);
-                    System.out.println("Pelicula con codigo: " + codigo + " creada con exito.");
+                    videoDaw.agregarPelicula(pelicula); //la registro en el videoclub
+                    System.out.println("Pelicula con titulo: " + titulo + " creada con exito.");
                     System.out.println(pelicula.mostrarInfoPelicula()); //muestra la información de la película
                     break;
                 case "3":
-                    System.out.print("Introduzca su DNI: ");
-                    String dni = sc.nextLine();
-                    System.out.print("Introduzca su nombre: ");
-                    String nombre = sc.nextLine();
-                    String codigoValido = MiUtils.comprobarPatronRepetidamente("[A-Z]{1}-[0-9]{4}", "Introduzca código de cliente");
+                    if (videoDaw == null) {
+                        System.out.println("Primero debe crear el videoclub (Opción 1)");
+                        break;
+                    }
+                    String dni = MiUtils.comprobarPatronRepetidamente("[0-9]{8}[A-Z]{1}", "Introduzca su DNI (ej: 12345678A): ");
+                    String nombre = MiUtils.comprobarPatronRepetidamente(".+", "Introduzca su nombre: ");
+                    String numSocio = MiUtils.comprobarPatronRepetidamente("[A-Z]{1}-[0-9]{4}", "Introduzca código de cliente (ej: S-0001): ");
                     String direccionCliente = MiUtils.comprobarPatronRepetidamente(".+", "Introduzca su dirección: ");
+                    java.time.LocalDate fechaRegistro = LocalDate.now();
+
+
+
+                    break;
+                case "4":
+
+
 
 
 
@@ -67,6 +83,7 @@ public class Main {
             System.out.println("1. Crear y registrar VideoClub en la franquicia.");
             System.out.println("2. Registrar película en videoclub.");
             System.out.println("3. Crear y registrar cliente en videoclub");
+            System.out.println("4. Alquilar película");
     }
 
 

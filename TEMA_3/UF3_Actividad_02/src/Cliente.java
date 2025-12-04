@@ -1,8 +1,10 @@
 import java.time.LocalDate;
+import java.time.Period;
 
 public class Cliente {
 
     //HACEMOS LA ENCAPSULACION
+
 
     private final String dni;
     private String nombre;
@@ -17,6 +19,11 @@ public class Cliente {
 
     //CREAMOS LOS CONSTRUCTORES
     public Cliente(String dni, String nombre, String numSocio, String direccion, LocalDate fechaNacimiento) {
+        Period edad = Period.between(fechaNacimiento, LocalDate.now());
+        if (edad.getYears() < 18) {
+            throw new IllegalArgumentException("El cliente debe tener al menos 18 años para registrarse.");
+        }
+
         this.dni = dni;
         this.nombre = nombre;
         this.numSocio = numSocio;
@@ -125,9 +132,9 @@ private void ampliarDimensionPeliculas(){
     }
 
 //METODO PARA ELIMINAR PELICULA ALQUILADA
-public boolean eliminarPelicula (String peliculaEliminada) {
+public boolean eliminarPelicula (String codigoPelicula) {
         for (int i = 0; i < this.contadorPeliculasAlquiladas; i++) { //recorro array buscando la pelicula que quiero eliminar
-            if (this.peliculasAlquiladas[i].equals(peliculaEliminada)) {
+            if (this.peliculasAlquiladas[i]!= null && this.peliculasAlquiladas[i].getCodigo().equals(codigoPelicula)){
                 this.peliculasAlquiladas[i].setFechaBaja(LocalDate.now());
                 //eliminamos esa posicion en el array
                 for (int j = i; j < this.contadorPeliculasAlquiladas -1; j++) {
