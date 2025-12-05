@@ -1,4 +1,6 @@
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;  //PARA EPOCH
 
 //HACEMOS LA ENCAPSULACION
 public class VideoDaw {
@@ -200,11 +202,70 @@ public boolean darBajaCliente (String dniBaja) {
     System.out.println("Cliente no encontrado");
     return false;
 }
+
+
+//METODO PARA BUSCAR DNI
+    public Cliente buscarClientePorDni(String dni) {
+        for (int i = 0; i < this.contadorClientesRegistrados; i++) {
+            if (this.clientesRegistrados[i].getDni().equals(dni)) {
+                return this.clientesRegistrados[i];
+            }
+        }
+        return null;
+    }
+    //METODO PARA BUSCAR PELICULA POR CODIGO
+
+    public Pelicula buscarPeliculaPorCodigo(String codigo) {
+        for (int i = 0; i < this.contadorPeliculasRegistradas; i++) {
+            if (this.peliculasRegistradas[i].getCodigo().equals(codigo)) {
+                return this.peliculasRegistradas[i];
+            }
+        }
+        return null;
+    }
 //METODO PARA DEVOLVER UNA PELÍCULA
+    public void devolverPelicula (Pelicula pelicula, Cliente cliente) {
 
+    final long SEGUNDOS_MAX = 172800;
 
+        LocalDateTime fechaActual = LocalDateTime.now();
+        LocalDateTime fechaAlquiler = pelicula.getFechaAlquiler();
 
+        // 1. Comprobar si la película tiene una fecha de alquiler registrada
+        if (fechaAlquiler != null && pelicula.isAlquilada()) {
 
+            // Convertimos local date a segundos
+            ZoneOffset zonaOffset = ZoneOffset.systemDefault().getRules().getOffset(fechaActual);
 
+            // Convertir ambas fechas a segundos Epoch (long)
+            long epochActual = fechaActual.toEpochSecond(zonaOffset);
+            long epochAlquiler = fechaAlquiler.toEpochSecond(zonaOffset);
 
-}
+            // Calcular la diferencia en segundos
+            long segundosTranscurridos = epochActual - epochAlquiler;
+
+            // 2. Comprobar si ha excedido el tiempo máximo
+            if (segundosTranscurridos > SEGUNDOS_MAX) {
+
+                System.out.println("La película '" + pelicula.getTitulo() + " ha excedido el tiempo máximo de 48 horas de alquiler.");
+            } else {
+                System.out.println("Devolución dentro del plazo.");
+            }
+
+        } else if (!pelicula.isAlquilada()) {
+            System.out.println("ERROR: La película '" + pelicula.getTitulo() + "' no está marcada como alquilada ");
+            // Intentamos eliminarla del cliente de todas formas, por si hay inconsistencia.
+        }
+        // Eliminar la película de la lista del cliente
+        boolean eliminadaDeCliente = cliente.eliminarPelicula(pelicula.getCodigo());
+
+        if (eliminadaDeCliente) {
+
+            pelicula.setAlquilada(false);
+            pelicula.setFechaAlquiler(null); // Borramos la fecha de alquiler para el próximo alquiler
+            System.out.println("Película " + pelicula.getTitulo() + "' devuelta al videoclub.");
+        } else {
+            System.out.println("La película '" + pelicula.getTitulo() + "' no estaba registrada en la lista de alquileres del cliente " + cliente.getNombre() + ". Solo se actualizó el estado general de la película.");
+        }
+    }
+    }

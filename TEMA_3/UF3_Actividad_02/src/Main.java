@@ -1,5 +1,5 @@
-import java.beans.JavaBean;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
@@ -59,22 +59,91 @@ public class Main {
                         System.out.println("Primero debe crear el videoclub (Opción 1)");
                         break;
                     }
-                    String dni = MiUtils.comprobarPatronRepetidamente("[0-9]{8}[A-Z]{1}", "Introduzca su DNI (ej: 12345678A): ");
+                    String dni = MiUtils.comprobarPatronRepetidamente("[0-9]{8}[A-Z]{1}", "Introduzca su DNI (ej: A12345678): ");
                     String nombre = MiUtils.comprobarPatronRepetidamente(".+", "Introduzca su nombre: ");
                     String numSocio = MiUtils.comprobarPatronRepetidamente("[A-Z]{1}-[0-9]{4}", "Introduzca código de cliente (ej: S-0001): ");
                     String direccionCliente = MiUtils.comprobarPatronRepetidamente(".+", "Introduzca su dirección: ");
-                    java.time.LocalDate fechaRegistro = LocalDate.now();
 
+                    LocalDate fechaNacimiento = null;
+                    boolean fechaValida = false;
 
+                    while (!fechaValida) {
+                        System.out.print("Introduzca su fecha de nacimiento: ");
+                        String fechaString = sc.nextLine();
 
+                        fechaNacimiento = LocalDate.parse(fechaString);
+
+                        Period edad  = Period.between(fechaNacimiento, LocalDate.now());
+                        if (edad.getYears() >= 18){
+                            fechaValida = true;
+                        }else {
+                            System.out.println("El cliente debe ser mayor de edad para registrarse.");
+                        }
+                    }
+                    Cliente cliente = new Cliente(dni, nombre, numSocio, direccionCliente, fechaNacimiento);
+                    videoDaw.agregarCliente(cliente);
+                    System.out.println("Cliente " + cliente.getDni() + " registrado");
+                    System.out.println(cliente.mostrarInfoCliente());
                     break;
+
                 case "4":
 
+                    String codigoPelicula = MiUtils.comprobarPatronRepetidamente("^P-\\d{4}$", "Ingrese el codigo de la pelicula que desea alquilar:");
+                    String dniCliente = MiUtils.comprobarPatronRepetidamente("[0-9]{8}[A-Z]{1}", "Introduzca su DNI (ej: A12345678): ");
 
+                    //buscar pelicula y cliente con metodo nuevo de videoDaw
+                    Cliente clienteAlquilar = videoDaw.buscarClientePorDni(dniCliente);
+                    Pelicula peliculaAlquilar = videoDaw.buscarPeliculaPorCodigo(codigoPelicula);
 
+                    // validaciones
+                    if (peliculaAlquilar == null) {
+                        System.out.println("No se ha encontrado la película. ");
+                    } else if (dniCliente == null) {
+                        System.out.println("No se ha encontrado el cliente");
+                    }else {
+                        videoDaw.alquilarPelicula(peliculaAlquilar, clienteAlquilar);
+                    }
+                    sc.nextLine();
+                    break;
+                case "5":
+                    if (videoDaw == null) {
+                        System.out.println("Primero debe crear el videoclub (Opción 1)");
+                        break;
+                    }
 
+                    String codigoPeliculaD = MiUtils.comprobarPatronRepetidamente("^P-\\d{4}$", "Ingrese el codigo de la pelicula que desea devolver:");
+                    String dniClienteD = MiUtils.comprobarPatronRepetidamente("[0-9]{8}[A-Z]{1}", "Introduzca su DNI (ej: A12345678): ");
 
+                    //Busco al cliente y la pelicula
+                    Cliente clienteDevolver = videoDaw.buscarClientePorDni(dniClienteD);
+                    Pelicula peliculaDevolver = videoDaw.buscarPeliculaPorCodigo(codigoPeliculaD);
 
+                    // Comprobar
+                    if (clienteDevolver == null) {
+                        System.out.println("Error: No se ha encontrado el cliente con DNI " + dniClienteD + ".");
+                    } else if (peliculaDevolver == null) {
+                        System.out.println("Error: No se ha encontrado la película con código " + codigoPeliculaD + ".");
+                    } else {
+                        videoDaw.devolverPelicula(peliculaDevolver, clienteDevolver);
+                    }
+                    sc.nextLine();
+                    break;
+                case "6":
+                    if (videoDaw == null) {
+                        System.out.println("Primero debe crear el videoclub (Opción 1)");
+                        break;
+                    }
+                    String dniBaja = MiUtils.comprobarPatronRepetidamente("[A-Z]{1}[0-9]{8}", "Introduzca su DNI (ej: A12345678): ");
+                    videoDaw.darBajaCliente(dniBaja);
+                    sc.nextLine();
+                    break;
+                case "7":
+                    if (videoDaw == null) {
+                        System.out.println("Primero debe crear el videoclub (Opción 1)");
+                        break;
+                    }
+                    String peliculaBaja = MiUtils.comprobarPatronRepetidamente("^P-\\d{4}$", "Ingrese el codigo de la pelicula que desea dar de baja:");
+                    //CREAR METODO PARA DAR DE BAJA A UNA PELICULA EM videoDaw
             }
         } while (!opcion.equals("8"));
     }
@@ -84,6 +153,10 @@ public class Main {
             System.out.println("2. Registrar película en videoclub.");
             System.out.println("3. Crear y registrar cliente en videoclub");
             System.out.println("4. Alquilar película");
+            System.out.println("5. Devolver película.");
+            System.out.println("6. Dar de baja cliente.");
+            System.out.println("6. Dar de baja pelicula.");
+
     }
 
 
