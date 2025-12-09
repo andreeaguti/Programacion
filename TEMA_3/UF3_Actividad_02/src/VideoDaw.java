@@ -58,6 +58,40 @@ public void setClientesRegistrados (Cliente [] clientesRegistrados){
 
 
 //METODOS ✅
+    //METODO PARA BUSCAR POR DNI
+        public Cliente buscarClientePorDni(String dni) {
+            for (int i = 0; i < this.contadorClientesRegistrados; i++) {
+                if (this.clientesRegistrados[i].getDni().equals(dni)) {
+                    return this.clientesRegistrados[i];
+            }
+        }
+        return null;
+    }
+    //METODO PARA BUSCAR PELICULA POR CODIGO
+
+    public Pelicula buscarPeliculaPorCodigo(String codigo) {
+        for (int i = 0; i < this.contadorPeliculasRegistradas; i++) {
+            if (this.peliculasRegistradas[i].getCodigo().equals(codigo)) {
+                return this.peliculasRegistradas[i];
+            }
+        }
+        return null;
+    }
+    //METODO PARA COMPROBAR SI EXISTE CLIENTE
+    public boolean existeCliente (Cliente cliente){
+        return buscarClientePorDni(cliente.getDni()) != null;
+    }
+    //METODO PARA COMPROBAR SI EXISTE PELICULA
+    public boolean existePelicula (Pelicula pelicula) {
+        return buscarPeliculaPorCodigo(pelicula.getCodigo()) != null;
+    }
+    //METODO PARA COMPROBAR QUE ESA PELICULA NO ESTÉ ALQUILADA
+    public boolean peliculaAlquilada (Pelicula pelicula) {
+        if (pelicula == null) {
+            return true; //no se puede alquilar si la pelicula no existe
+        }
+        return pelicula.isAlquilada();
+    }
 
 //CREO METODO PARA MOSTRAR LA INFORMACION DEL VIDEOCLUB
 public String mostrarInfoVideoClub() {
@@ -72,35 +106,32 @@ public String mostrarInfoVideoClub() {
 
 //METODO PARA VER LAS PELICULAS REGISTRADAS
 public String mostrarPeliculasRegistradas(){
-    String mostrarPeliculasRegistradas = "";
-    int contador = 0;
-    mostrarPeliculasRegistradas += "Las peliculas registradas son:" + "\n";
-    for (Pelicula pelicula : this.peliculasRegistradas) {
-        if (pelicula == null || contador == 0) {
-            System.out.println("Por el momento no hay peliculas registradas");
-        }else {
-            contador++;
-            mostrarPeliculasRegistradas += pelicula.mostrarInfoPelicula();
-        }
+    if (this.contadorPeliculasRegistradas == 0) {
+        System.out.println("De momento no hay peliculas registradas");
+    }
+    String mostrarPeliculasRegistradas = "Las peliculas registradas son : \n";
+    for (int i = 0; i < this.contadorPeliculasRegistradas; i++) {
+        mostrarPeliculasRegistradas += "Pelicula" + (i+1) + "\n";
+        mostrarPeliculasRegistradas += this.peliculasRegistradas[i].mostrarInfoPelicula();
     }
     return mostrarPeliculasRegistradas;
     }
+    //METODO PARA VER LOS CLIENTES REGISTRADOS
+    public String mostrarClientesRegistrados(){
+        String mostrarClientesRegistrados = "";
+        mostrarClientesRegistrados += "Los clientes registrados son:" + "\n";
 
-    //METODO PARA REGISTRAR CLIENTES
-    public void agregarCliente (Cliente cliente) {
-        if (this.existeCliente(cliente)) {
-            System.out.println("El cliente ya existe");
+        if (this.contadorClientesRegistrados == 0) {
+            System.out.println("No hay clientes registrados");
         }
-        if (this.contadorClientesRegistrados < this.clientesRegistrados.length) {
-            this.clientesRegistrados[this.contadorClientesRegistrados] = cliente;
-        }else if (this.contadorClientesRegistrados >= this.clientesRegistrados.length) {
-            this.ampliarDimensionClientes();
-            this.clientesRegistrados[this.contadorClientesRegistrados] = cliente;
+        for (int i=0; i<this.contadorClientesRegistrados; i++) {
+            mostrarClientesRegistrados += "Cliente" + (i + 1) + "\n";
+            mostrarClientesRegistrados += this.clientesRegistrados[i].mostrarInfoCliente();
         }
-        this.contadorClientesRegistrados++;
-        System.out.println("Cliente " + cliente.getNombre() + " registrado");
+        return mostrarClientesRegistrados;
     }
 
+    //METODO PARA REGISTRAR CLIENTES
     private void ampliarDimensionClientes(){
         Cliente[] clientesRegistradosAux = new Cliente[this.clientesRegistrados.length + 10];
         for(int i = 0; i < this.clientesRegistrados.length; i++){
@@ -109,14 +140,24 @@ public String mostrarPeliculasRegistradas(){
         this.clientesRegistrados = clientesRegistradosAux;
     }
 
-    public boolean existeCliente (Cliente cliente){
-        for (int i = 0; i < this.contadorClientesRegistrados; i++){
-            if (this.clientesRegistrados[i].getDni().equals(cliente.getDni())){
-                return true;
-            }
+    public void agregarCliente (Cliente cliente) {
+        if (this.existeCliente(cliente)) {
+            System.out.println("El cliente ya existe");
+            return;
         }
-        return false;
+        if (this.contadorClientesRegistrados == this.clientesRegistrados.length) {
+            this.ampliarDimensionClientes();
+        }
+
+        this.clientesRegistrados[this.contadorClientesRegistrados] = cliente;
+        this.contadorClientesRegistrados++;
+
+        System.out.println("Cliente " + cliente.getNombre() + " registrado");
     }
+
+
+
+
     //METODO PARA REGISTRAR PELICULAS
     public void agregarPelicula (Pelicula pelicula) {
         if (this.existePelicula(pelicula)) {
@@ -138,40 +179,7 @@ public String mostrarPeliculasRegistradas(){
         }
         this.peliculasRegistradas = peliculasRegistradasAux;
     }
-    public boolean existePelicula (Pelicula pelicula) {
-        for (int i = 0; i < this.contadorPeliculasRegistradas; i++){
-            if (this.peliculasRegistradas[i].getCodigo().equals(pelicula.getCodigo())){
-                return true;
-            }
-        }
-        return false;
-    }
 
-//METODO PARA VER LOS CLIENTES REGISTRADOS
-public String mostrarClientesRegistrados(){
-    String mostrarClientesRegistrados = "";
-    mostrarClientesRegistrados += "Los clientes registrados son:" + "\n";
-
-    if (this.contadorClientesRegistrados == 0) {
-        System.out.println("No hay clientes registrados");
-    }
-    for (int i=0; i<this.contadorClientesRegistrados; i++) {
-        mostrarClientesRegistrados += "Cliente" + (i + 1) + "\n";
-        mostrarClientesRegistrados += this.clientesRegistrados[i].mostrarInfoCliente();
-    }
-    return mostrarClientesRegistrados;
-}
-
-//METODO PARA COMPROBAR QUE ESA PELICULA NO ESTÉ ALQUILADA
-    public boolean peliculaAlquilada (Pelicula pelicula) {
-    boolean retorno = false; //de primeras no está alquilada
-    if (pelicula == null) {
-        retorno = true;
-    } else if (pelicula.isAlquilada()) {
-        retorno = true;
-    }
-    return retorno;
-    }
 
 //METODO PARA ALQUILAR UNA PELICULA
 public void alquilarPelicula (Pelicula pelicula, Cliente cliente) {
@@ -179,8 +187,9 @@ public void alquilarPelicula (Pelicula pelicula, Cliente cliente) {
         System.out.println("No se puede alquilar");
     }else {
         pelicula.setAlquilada(true);
+        pelicula.setFechaAlquiler(LocalDateTime.now());
         cliente.agregarPelicula(pelicula);
-        System.out.println("Pelicula alquilada!!");
+        System.out.println("Pelicula alquilada!");
     }
 }
 //METODO PARA DAR DE BAJA A UN CLIENTE
@@ -203,26 +212,24 @@ public boolean darBajaCliente (String dniBaja) {
     return false;
 }
 
-
-//METODO PARA BUSCAR DNI
-    public Cliente buscarClientePorDni(String dni) {
-        for (int i = 0; i < this.contadorClientesRegistrados; i++) {
-            if (this.clientesRegistrados[i].getDni().equals(dni)) {
-                return this.clientesRegistrados[i];
-            }
-        }
-        return null;
-    }
-    //METODO PARA BUSCAR PELICULA POR CODIGO
-
-    public Pelicula buscarPeliculaPorCodigo(String codigo) {
+//METODO PARA DAR DE BAJA PELICULA
+    public boolean darBajaPelicula (String peliculaBaja) {
+    //recorro array buscando la pelicula
         for (int i = 0; i < this.contadorPeliculasRegistradas; i++) {
-            if (this.peliculasRegistradas[i].getCodigo().equals(codigo)) {
-                return this.peliculasRegistradas[i];
+            if (this.peliculasRegistradas[i].getCodigo().equals(peliculaBaja)) {
+                this.peliculasRegistradas[i].setFechaBaja(LocalDate.now());
+                //elimino la posicion del array
+                for (int j = i; j < this.contadorPeliculasRegistradas-1; j++) {
+                    this.clientesRegistrados[j] = this.clientesRegistrados[j+1];
+                }
+                this.peliculasRegistradas[this.contadorPeliculasRegistradas-1] = null;
+                this.contadorPeliculasRegistradas--; //le restamos al contador el cliente eliminado
+                return true;
             }
         }
-        return null;
+        return false;
     }
+
 //METODO PARA DEVOLVER UNA PELÍCULA
     public void devolverPelicula (Pelicula pelicula, Cliente cliente) {
 

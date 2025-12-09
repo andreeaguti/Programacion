@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        VideoDaw videoDaw =null;
 
         String opcion = "";
         do {
@@ -14,7 +15,7 @@ public class Main {
                 case "1":
                     String cifValido = MiUtils.comprobarPatronRepetidamente("[A-Z]{1}[0-9]{8}", "Introduzca el CIF del videoclub");
                     String direccionVideoclub = MiUtils.comprobarPatronRepetidamente(".+", "Introduzca la dirección del videoclub");
-                    VideoDaw videoDaw = new VideoDaw(cifValido, direccionVideoclub);
+                    videoDaw = new VideoDaw(cifValido, direccionVideoclub);
                     System.out.println("Videoclub " + cifValido + "con direecion: " + direccionVideoclub + " creada.");
                     System.out.println(videoDaw.mostrarInfoVideoClub());
                     break;
@@ -46,7 +47,7 @@ public class Main {
                             // Si es válido, asigna el enum
                             generoSeleccionado = generosDisponibles[opcionGeneros - 1];
                         } else {
-                            System.err.println("Opción no válida. Por favor, ingrese un número entre 1 y " + generosDisponibles.length + ".");
+                            System.err.println("Opción no válida. Por favor, ingrese un número entre 1 y " + generosDisponibles.length);
                         }
                     } while (generoSeleccionado == null);
                     Pelicula pelicula = new Pelicula(codigo, titulo, generoSeleccionado);
@@ -143,9 +144,17 @@ public class Main {
                         break;
                     }
                     String peliculaBaja = MiUtils.comprobarPatronRepetidamente("^P-\\d{4}$", "Ingrese el codigo de la pelicula que desea dar de baja:");
-                    //CREAR METODO PARA DAR DE BAJA A UNA PELICULA EM videoDaw
+                    videoDaw.darBajaPelicula(peliculaBaja);
+                    sc.nextLine();
+                    break;
+                case "8":
+                    System.out.println("\n Cerrando el programa...");
+                    break;
+                default:
+                    System.out.println("Opción no válida.");
             }
         } while (!opcion.equals("8"));
+        sc.close();
     }
         private static void imprimirMenuOpciones() {
             System.out.println("Escoga la opcion que desee");
@@ -155,9 +164,7 @@ public class Main {
             System.out.println("4. Alquilar película");
             System.out.println("5. Devolver película.");
             System.out.println("6. Dar de baja cliente.");
-            System.out.println("6. Dar de baja pelicula.");
+            System.out.println("7. Dar de baja pelicula.");
 
     }
-
-
 }

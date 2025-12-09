@@ -5,7 +5,6 @@ public class Cliente {
 
     //HACEMOS LA ENCAPSULACION
 
-
     private final String dni;
     private String nombre;
     private String numSocio;
@@ -15,7 +14,6 @@ public class Cliente {
     private Pelicula[] peliculasAlquiladas;
 
     private int contadorPeliculasAlquiladas;
-
 
     //CREAMOS LOS CONSTRUCTORES
     public Cliente(String dni, String nombre, String numSocio, String direccion, LocalDate fechaNacimiento) {
@@ -31,6 +29,7 @@ public class Cliente {
         this.fechaNacimiento = fechaNacimiento;
         this.fechaBaja = null;
         this.peliculasAlquiladas = new Pelicula[10];
+        this.contadorPeliculasAlquiladas = 0;
     }
 
     //DEFINO GETTERS
@@ -63,10 +62,9 @@ public class Cliente {
     }
 
     //DEFINO SETTERS
-    public void setnumSocio(String numSocio) {
-        this.numSocio = numSocio;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
-
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
@@ -75,9 +73,6 @@ public class Cliente {
         this.fechaBaja = fechaBaja;
     }
 
-    public void setPeliculasAlquiladas(Pelicula[] peliculasAlquiladas) {
-        this.peliculasAlquiladas = peliculasAlquiladas;
-    }
 
 //METODOS ✅
 
@@ -115,16 +110,15 @@ public class Cliente {
 //METODO PARA AGREGAR PELICULAS ALQUILADAS
 
 public void agregarPelicula (Pelicula pelicula) {
-        if (this.contadorPeliculasAlquiladas < this.peliculasAlquiladas.length ) {
-            this.peliculasAlquiladas [this.contadorPeliculasAlquiladas] = pelicula;
-        }else if (this.contadorPeliculasAlquiladas >= this.peliculasAlquiladas.length) {
-            this.ampliarDimensionPeliculas();
-            this.peliculasAlquiladas[this.contadorPeliculasAlquiladas] = pelicula;
+        if (this.contadorPeliculasAlquiladas == this.peliculasAlquiladas.length ) {
+            this.ampliarDimensionPeliculas(); //ampliar si esta lleno
         }
-    this.contadorPeliculasAlquiladas++;
-}
+        this.peliculasAlquiladas[this.contadorPeliculasAlquiladas] = pelicula;
+        this.contadorPeliculasAlquiladas++;
+        }
 private void ampliarDimensionPeliculas(){
         Pelicula[] peliculasAlquiladasAux = new Pelicula[this.peliculasAlquiladas.length + 10];
+
         for(int i = 0; i < this.peliculasAlquiladas.length; i++){
             peliculasAlquiladasAux[i] = this.peliculasAlquiladas[i];
         }
@@ -134,15 +128,13 @@ private void ampliarDimensionPeliculas(){
 //METODO PARA ELIMINAR PELICULA ALQUILADA
 public boolean eliminarPelicula (String codigoPelicula) {
         for (int i = 0; i < this.contadorPeliculasAlquiladas; i++) { //recorro array buscando la pelicula que quiero eliminar
-            if (this.peliculasAlquiladas[i]!= null && this.peliculasAlquiladas[i].getCodigo().equals(codigoPelicula)){
-                this.peliculasAlquiladas[i].setFechaBaja(LocalDate.now());
-                //eliminamos esa posicion en el array
+            if (this.peliculasAlquiladas[i].getCodigo().equals(codigoPelicula)){
+
                 for (int j = i; j < this.contadorPeliculasAlquiladas -1; j++) {
                     this.peliculasAlquiladas[j] = this.peliculasAlquiladas[j +1];
                 }
                 this.peliculasAlquiladas[this.contadorPeliculasAlquiladas -1] =null;
                 this.contadorPeliculasAlquiladas--;
-                System.out.println("Pelicula devuelta con exito");
                 return true;
             }
         }
