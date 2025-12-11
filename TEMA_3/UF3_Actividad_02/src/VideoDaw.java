@@ -67,8 +67,8 @@ public void setClientesRegistrados (Cliente [] clientesRegistrados){
         }
         return null;
     }
-    //METODO PARA BUSCAR PELICULA POR CODIGO
 
+    //METODO PARA BUSCAR PELICULA POR CODIGO
     public Pelicula buscarPeliculaPorCodigo(String codigo) {
         for (int i = 0; i < this.contadorPeliculasRegistradas; i++) {
             if (this.peliculasRegistradas[i].getCodigo().equals(codigo)) {
@@ -116,6 +116,7 @@ public String mostrarPeliculasRegistradas(){
     }
     return mostrarPeliculasRegistradas;
     }
+
     //METODO PARA VER LOS CLIENTES REGISTRADOS
     public String mostrarClientesRegistrados(){
         String mostrarClientesRegistrados = "";
