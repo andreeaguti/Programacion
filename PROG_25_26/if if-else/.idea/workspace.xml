@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c668946a-9cdc-4c8b-b57e-753818f93c1b" name="Changes" comment="" />
+    <list default="true" id="f25b5fed-16bd-4d9c-bb31-08dfb74abbc1" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 0
-}</component>
-  <component name="ProjectId" id="36jcYBVsFyPj7RJEdjRKgB1hHgU" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 1
+}]]></component>
+  <component name="ProjectId" id="34fEAh8UEBGiTY3xTAJ9aisU4gC" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -22,13 +22,13 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "git-widget-placeholder": "main",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/andreagutierrez/Desktop/DAW 1/PROGRMACION/github2/PROG_25_26/TEMA_3/UF3_Actividad_01",
     "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "/Users/andreagutierrez/Desktop/DAW 1/PROGRMACION/github2/if if-else/src/Main.java",
+    "settings.editor.selected.configurable": "preferences.keymap",
     "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
   }
@@ -43,13 +43,13 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c668946a-9cdc-4c8b-b57e-753818f93c1b" name="Changes" comment="" />
-      <created>1765523465360</created>
+      <changelist id="f25b5fed-16bd-4d9c-bb31-08dfb74abbc1" name="Changes" comment="" />
+      <created>1760707563413</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1765523465360</updated>
-      <workItem from="1765523466422" duration="9000" />
-      <workItem from="1765828792407" duration="55000" />
+      <updated>1760707563413</updated>
+      <workItem from="1760707564628" duration="517000" />
+      <workItem from="1761596084815" duration="16000" />
     </task>
     <servers />
   </component>
