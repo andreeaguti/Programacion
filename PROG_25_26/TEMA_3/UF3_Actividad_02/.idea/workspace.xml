@@ -11,7 +11,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
@@ -27,7 +27,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/daw1/Documents/GITHUB/REPOSITORIO/PROG_25_26/TEMA_3/UF3_Actividad_02",
+    "last_opened_file_path": "C:/Users/daw1/Documents/GITHUB/Programacion/PROG_25_26/TEMA_3/UF3_Actividad_02",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -53,6 +53,7 @@
       <updated>1765529942542</updated>
       <workItem from="1765529943664" duration="12000" />
       <workItem from="1765532068068" duration="1402000" />
+      <workItem from="1765955308072" duration="2000" />
     </task>
     <servers />
   </component>
