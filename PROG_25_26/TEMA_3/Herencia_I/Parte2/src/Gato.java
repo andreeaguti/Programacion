@@ -1,7 +1,7 @@
 public class Gato extends Mascotas {
 
-    protected String color;
-    protected boolean peloLargo;
+    private String color;
+    private boolean peloLargo;
 
     public Gato(String nombre, int edad, String estado, String fechaNacimiento, String color, boolean peloLargo) {
         super(nombre, edad, estado, fechaNacimiento);
@@ -9,16 +9,22 @@ public class Gato extends Mascotas {
         this.peloLargo = peloLargo;
     }
 
-    @Override
-    public void muestra() {
-        System.out.println("--- Gato: " + nombre + " ---");
-        System.out.println("Color: " + color + ", Pelo Largo: " + (peloLargo ? "Sí" : "No"));
-        System.out.println("Edad: " + edad + " años, Estado: " + estado);
+    public String getColor() {
+        return color;
+    }
+
+    public boolean isPeloLargo() {
+        return peloLargo;
     }
 
     @Override
-    public void habla() {
-        System.out.println(nombre + " dice: Miau");
+    public String muestra() {
+        return "";
+    }
+
+    @Override
+    public String habla() {
+        return "Soy un gato ";
     }
 
     public void saluda() {

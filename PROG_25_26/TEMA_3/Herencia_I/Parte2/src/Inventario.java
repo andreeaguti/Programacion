@@ -3,7 +3,7 @@ public class Inventario {
 
     private Mascotas[] animales;
 
-    private int contadorAnimales;
+    private int contadorAnimales = 0; //lo hacemos aqui para hacer un campo privado auxiliar
 
     public Inventario() {
 

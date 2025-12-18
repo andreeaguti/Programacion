@@ -1,24 +1,19 @@
+import java.time.LocalDate;
+
 public abstract class Mascotas {
+
 
         protected String nombre;
         protected int edad;
         protected String estado;
-        protected String fechaNacimiento;
+        protected LocalDate fechaNacimiento;
 
-        public Mascotas(String nombre, int edad, String estado, String fechaNacimiento) {
-            this.nombre = nombre;
-            this.edad = edad;
-            this.estado = estado;
-            this.fechaNacimiento = fechaNacimiento;
-        }
+    public abstract String muestra(); //porque lo tienen más clases
+    public abstract String habla(); //porque lo tienen más clases
 
-        public abstract void muestra();
-        public abstract void habla();
-
-        // Métodos
-        public void cumpleanos() {
-            this.edad++;
-            System.out.println (nombre + " ahora tiene " + edad + " años.");
+    // Métodos
+    public String cumpleanos() {
+           String mensaje = "No es mi cumple";
         }
 
         public void morir() {
@@ -26,11 +21,5 @@ public abstract class Mascotas {
             System.out.println(nombre + " ha muerto.");
         }
 
-        public String getNombre() {
-            return nombre;
-        }
-        public String getTipo() {
-            return this.getClass().getSimpleName();
-        }
-    }
-
+//protected se pone en todas las clases abstratas que vayan a tener hijos
+//public abstract String muestra(); //porque lo tienen más clases
