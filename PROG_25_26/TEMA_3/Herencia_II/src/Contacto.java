@@ -7,6 +7,11 @@ public class Contacto {
         this.nombre = nombre;
         this.telefono = telefono;
     }
+    public void mostrarContacto()
+    {
+        System.out.println("Nombre: " + this.nombre);
+        System.out.println("Telefono: " + this.telefono);
+    }
     public String getNombre() {
         return nombre;
     }
