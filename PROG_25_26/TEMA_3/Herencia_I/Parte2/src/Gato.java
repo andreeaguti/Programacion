@@ -34,12 +34,16 @@ public class Gato extends Mascotas {
 
     @Override
     public String toString() {
-        return "Gato{" +
-                "color='" + color + '\'' +
-                ", peloLargo=" + peloLargo +
-                '}';
-    } // no me deja coger los atributos de mascota
-
+        final StringBuilder sb = new StringBuilder("Gato{");
+        sb.append("color='").append(color).append('\'');
+        sb.append(", peloLargo=").append(peloLargo);
+        sb.append(", nombre='").append(nombre).append('\'');
+        sb.append(", edad=").append(edad);
+        sb.append(", estado='").append(estado).append('\'');
+        sb.append(", fechaNacimiento=").append(fechaNacimiento);
+        sb.append('}');
+        return sb.toString();
+    }
 }
 // "this" busca en la clase y "super" busca en la clase padre
 // getSimpleName(): esto extrae el nombre de esta clase

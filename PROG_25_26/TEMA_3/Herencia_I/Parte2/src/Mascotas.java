@@ -43,5 +43,5 @@ public abstract class Mascotas {
 }
 //protected se pone en todas las clases abstratas que vayan a tener hijos
 //public abstract String muestra(); //se pone asi, porque lo tienen más clases
-// porque aqui no hacemos getter de todos los atributos??
+// porque aqui no hacemos getter de todos los atributos?
 // para que sirve el toString???

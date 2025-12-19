@@ -25,7 +25,7 @@ public class Perro extends Mascotas {
 
     @Override
     public String muestra() {
-        return "Hola, soy un " + this.getClass().getSimpleName() + "y me llamo" + super.nombre;
+        return "Hola, soy un " + this.getClass().getSimpleName() + " y me llamo " + super.nombre;
     }
 
     @Override
