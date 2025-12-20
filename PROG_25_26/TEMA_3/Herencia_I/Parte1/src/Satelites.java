@@ -1,40 +1,45 @@
 public class Satelites extends Astros {
 
-    private double distanciaPlaneta;
-    private double orbitaPlaneta;
+    private double distanciaAlPlaneta;
+    private double orbitaPlanetaria;
     private String planetaPertenece;
 
-    public Satelites(double masaCuerpo, double diametroMedio, double periodoRotacion, double periodoTraslacion, double distanciaMedia, double distanciaPlaneta, double orbitaPlaneta, String planetaPertenece)
-    {
-        super (masaCuerpo, diametroMedio, periodoRotacion, periodoTraslacion, distanciaMedia);
-
-        this.distanciaPlaneta = distanciaPlaneta;
-        this.orbitaPlaneta = orbitaPlaneta;
+    public Satelites(String nombre, double radioEcuatorial, double rotacionSobreSuEjeMasa, double temperaturaMediaGravedad, double distanciaAlPlaneta, double orbitaPlanetaria, String planetaPertenece) {
+        super(nombre, radioEcuatorial, rotacionSobreSuEjeMasa, temperaturaMediaGravedad);
+        this.distanciaAlPlaneta = distanciaAlPlaneta;
+        this.orbitaPlanetaria = orbitaPlanetaria;
         this.planetaPertenece = planetaPertenece;
     }
-public void mostrarAstros()
-    {
-        super.mostrarAstros();
-            System.out.println("Planeta Pertenece: " + planetaPertenece);
-            System.out.println("Distancia Planeta: " + distanciaPlaneta);
-            System.out.println("Orbita Planeta: " + orbitaPlaneta);
+
+    public double getDistanciaAlPlaneta() {
+        return distanciaAlPlaneta;
     }
-    public double getDistanciaPlaneta() {
-        return distanciaPlaneta;
+
+    public double getOrbitaPlanetaria() {
+        return orbitaPlanetaria;
     }
-    public void setDistanciaPlaneta(double distanciaPlaneta) {
-        this.distanciaPlaneta = distanciaPlaneta;
-    }
-    public double getOrbitaPlaneta() {
-        return orbitaPlaneta;
-    }
-    public void setOrbitaPlaneta(double orbitaPlaneta) {
-        this.orbitaPlaneta = orbitaPlaneta;
-    }
+
     public String getPlanetaPertenece() {
         return planetaPertenece;
     }
-    public void setPlanetaPertenece(String planetaPertenece) {
-        this.planetaPertenece = planetaPertenece;
+
+    @Override
+    public String muestra() {
+        return "Satélite: " + this.getClass().getSimpleName() +
+                " Orbita alrededor de: " + this.planetaPertenece +
+                " Distancia al planeta: " + this.distanciaAlPlaneta + " km.";
+    }
+
+    @Override
+    public String toString() {
+        return "Satelites{" +
+                "nombre='" + nombre + '\'' +
+                ", radioEcuatorial=" + radioEcuatorial +
+                ", rotacionSobreSuEjeMasa=" + rotacionSobreSuEjeMasa +
+                ", temperaturaMediaGravedad=" + temperaturaMediaGravedad +
+                ", distanciaAlPlaneta=" + distanciaAlPlaneta +
+                ", orbitaPlanetaria=" + orbitaPlanetaria +
+                ", planetaPertenece='" + planetaPertenece + '\'' +
+                '}';
     }
 }
