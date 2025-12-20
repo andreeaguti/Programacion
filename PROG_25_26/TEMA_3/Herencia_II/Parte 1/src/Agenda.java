@@ -1,10 +1,10 @@
-
 public class Agenda {
     private Contacto[] contactos;
     private int contadorContactos = 0;
 
     public Agenda (int tamano) {
         this.contactos = new Contacto[tamano];
+        this.contadorContactos = 0;
     }
 
     // void listarContactos(): Muestra por pantalla toda la agenda.
@@ -31,15 +31,17 @@ public class Agenda {
     }
 
     public boolean existeContacto(Contacto contacto) {
-        return buscarContactoPorNombre(contacto.getNombre())!= null;
+        return buscarContactoPorNombre(contacto.getNombre()) == null;
     }
 
-    public void anadirContacto(Contacto contacto) {
-        if (this.existeContacto(contacto.getNombre())) {
-            System.out.println("El contacto ya existe,s prueba con otro nombre.");
-            return false;
+    public boolean anadirContacto(Contacto contacto) {
+        boolean estado = false;
+        if (this.contadorContactos < this.contactos.length && buscarContactoPorNombre(contacto.getNombre())!= null) {
+            this.contactos[contadorContactos] = contacto;
+            this.contadorContactos++;
+            estado = true;
         }
-        this.contactos [this.contadorContactos++] = contacto;
+        return estado;
     }
 
     //metodo: boolean eliminarContacto(String nombre): elimina el contacto de la agenda.
@@ -64,14 +66,28 @@ public class Agenda {
     }
     // int buscaContacto(String nombre): busca un contacto por su nombre y devuelve
     // su posición en la agenda
-    public Contacto buscarContactoNombre (String nombre) {
+    public int buscarContactoNombre (String nombre) {
         for (int i = 0; i < this.contadorContactos; i++){
             Contacto t = this.contactos[i];
-            if (t.getNombre().equals(nombre)){
-                return t;
+            if (t.getNombre().equalsIgnoreCase(nombre)){
+                return i;
             }
         }
-        return null ;
+        return -1 ;
+    }
+
+    public String mostrarInfoTodosContactos(){
+        String texto = "";
+        if(this.contadorContactos > 0) { //verifica que haya mascotas, si el contador es 0, salta directamente al else
+            for(Contacto c : this.contactos){ //para cada objeto de tipo Mascotas (m) dentro del array this.misMascotas...
+                if(c != null) { //esto evita que el programa lea un hueco vacio
+                    texto += c.toString();
+                }
+            }
+        }else{
+            texto = "No hay contactos en la agenda"; // si mascotasActuales era 0, manda este mensaje der error
+        }
+        return texto; //envia de vuelta el String con todos los datos
     }
 
 }
