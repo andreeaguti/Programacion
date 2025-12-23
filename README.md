@@ -4,7 +4,7 @@ Este repositorio contiene todos los ejercicios, algoritmos y proyectos desarroll
 
 ## 🛠️ Tecnologías y Herramientas
 * **Lenguaje:** ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
-* **IDE:** IntelliJ IDEA / Eclipse
+* **IDE:** IntelliJ IDEA
 * **Control de Versiones:** ![Git](https://img.shields.io/badge/git-%23F05032.svg?style=for-the-badge&logo=git&logoColor=white)
 
 ## 📁 Estructura del Repositorio
