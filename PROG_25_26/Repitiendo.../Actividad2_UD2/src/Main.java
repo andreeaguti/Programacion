@@ -124,17 +124,71 @@ public class Main {
         }
         System.out.println("La hora es: " + hora + ":" + minuto + ":" + segundo);
 
-
         //Ejercicio 10
         sc=new Scanner(System.in);
         System.out.println("Ejercicio 10");
+        boolean hayNegativos = false;
+        for (int i = 1; i <= 10; i++) {
+            System.out.println("Introduze un numero:");
+            double numero22 = sc.nextDouble();
+            if (numero22 < 0){
+                hayNegativos = true;
+            }
+        }
+        System.out.println("Hay negativos: " + hayNegativos);
 
-        System.out.println("Introduzca un numero: ");
-        int num = sc.nextInt();
-        System.out.println("Introduzca la hora: ");
 
+        //Ejercicio 11
+        sc=new Scanner(System.in);
+        System.out.println("Ejercicio 11");
+        int contadorPositivos = 0;
+        int contadorNegativos = 0;
+        for (int i = 1; i <= 10; i++) {
+            System.out.println("Introduce un numero:");
+            double numero21 = sc.nextDouble();
+            if (numero21 < 0){
+                contadorNegativos++;
+            } else if (numero21 > 0) {
+                contadorPositivos++;
+            }else {
+                System.out.println("El número no puede ser 0");
+            }
+        }
+        System.out.println("Número negativos: " + contadorNegativos);
+        System.out.println("Número positivos: " + contadorPositivos);
 
+        //Ejercicio 12
+        sc=new Scanner(System.in);
+        System.out.println("Ejercicio 12");
+        int numerosPositivos = 0;
+        int numerosNegativos = 0;
+        int numeroCero = 0;
 
+        do {
+            System.out.println("Introduzca un numero: ");
+            numero = sc.nextInt();
+            if (numero > 0){
+                numerosPositivos++;
+            }else if (numero < 0){
+                numerosNegativos++;
+            }
+        }while (numero != 0 );
+        System.out.println("Número negativos: " + contadorNegativos);
+        System.out.println("Número positivos: " + contadorPositivos);
+
+        //Ejercicio 13
+        System.out.println("\nEjercicio 13");
+        sc = new Scanner(System.in);
+
+        int suma = 0;
+        int multiplica = 1;
+
+        for(int i = 1; i <= 10; i++){
+            suma  = suma + i; // suma += i;
+            multiplica = multiplica * i; // multiplica *= i;
+        }
+        System.out.println("La suma de los 10 primeros numeros naturales es: " + suma);
+        System.out.println("La multiplicacion de los 10 primeros numeros naturales es: " + multiplica);
 
 
 
