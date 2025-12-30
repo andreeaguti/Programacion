@@ -113,8 +113,76 @@ public class Main {
         Arrays.fill(array, m); //asigna el valor M a el array entero
         System.out.println(Arrays.toString(array)); //enseñamos lo que hay dentro del array
 
+
         //Ejercicio 07
         System.out.println("Ejercicio 07");
         sc = new Scanner(System.in);
+        //Crea un programa que pida dos valores enteros P y Q, luego cree un array que contenga todos los valores
+        //desde P hasta Q, y lo muestre por pantalla.
+        System.out.println("Introduce el valor de P");
+        int p = sc.nextInt();
+        System.out.println("Introduce el valor de Q");
+        int q = sc.nextInt();
+
+        int tamano= (q-p)+1;
+        int ejercicio7[] = new int[tamano];
+
+        for (int i = 0; i < ejercicio7.length; i++) { //recorro el array desde la posición 0 hasta la última posición del tamaño del array
+            ejercicio7[i]=p+i;
+        }
+        System.out.println(Arrays.toString(ejercicio7)); //muestra por pantalla los array
+
+        //Ejercicio 08
+        System.out.println("Ejercicio 08");
+        sc = new Scanner(System.in);
+        //Crea un programa que cree un array con 100 números reales aleatorios entre 0.0 y 1.0, utilizando
+        // Math.random(), y luego le pida al usuario un valor real R. Por último, mostrará cuántos valores del array
+        // son igual o superiores a R.
+
+        double[] numerosReales5 = new double[100];
+
+        for (int i = 0; i < numerosReales5.length; i++) {
+            numerosReales5[i]=Math.random();
+        }
+        System.out.println(Arrays.toString(numerosReales5));
+
+        System.out.println("Introduce un valor R");
+        int r = sc.nextInt();
+        int contadorMayores = 0;
+        int contadorMenores = 0;
+        for (int i = 0; i < numerosReales5.length; i++) {
+            if (numerosReales5[i] >= r) {
+                contadorMayores++;
+            }else  {
+                contadorMenores++;
+            }
+        }
+        System.out.println("Hay " + contadorMayores + "numeros mayores que R");
+        System.out.println("Hay " + contadorMenores + "numeros menores que R");
+
+        //Ejercicio 09
+        System.out.println("Ejercicio 09");
+        sc = new Scanner(System.in);
+        //Crea un programa que cree un array de enteros de tamaño 100 y lo rellene con valores enteros aleatorios
+        // entre 1 y 10 (utiliza 1 + Math.random()*10). Luego pedirá un valor N y mostrará en qué posiciones del
+        // array aparece N.
+        int[] numerosReales6 = new int[100];
+
+        for (int i = 0; i < numerosReales6.length; i++) {
+            numerosReales6[i]=(int) (Math.random()*10+1);
+            //Math.random() da un decimal entre 0 y 1. Al multiplicar por 10 y sumar 1, y luego convertir a (int),
+            //obtienes un número entero entre 1 y 10. Este número se guarda en la posición i.
+        }
+        System.out.println("Introduce un valor del 1 al 10");
+        int valor1 = sc.nextInt();
+        //recorro el array
+        for (int i = 0; i < numerosReales6.length; i++) { //recorro el array desde la posición 0 hasta la última posición del tamaño del array
+           if (valor1 == numerosReales6[i]) {
+               System.out.println("N aparece en la posicion: " +i;
+           }
+        }
+
+
+
     }
 }
