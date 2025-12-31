@@ -178,9 +178,77 @@ public class Main {
         //recorro el array
         for (int i = 0; i < numerosReales6.length; i++) { //recorro el array desde la posición 0 hasta la última posición del tamaño del array
            if (valor1 == numerosReales6[i]) {
-               System.out.println("N aparece en la posicion: " +i;
+               System.out.println("N aparece en la posicion: " +i);
            }
         }
+        //Ejercicio 10
+        System.out.println("Ejercicio 10");
+        sc = new Scanner(System.in);
+
+        //Crea un programa para realizar cálculos relacionados con la altura (en metros) de personas. Pedirá un valor N
+        //y luego almacenará en un array N alturas introducidas por teclado. Luego mostrará la altura media,
+        // máxima y mínima, así como cuántas personas miden por encima y por debajo de la media.
+        System.out.println("Introduce el valor de N");
+        int alturas = sc.nextInt();
+
+        double[] ejercicio10 = new double[alturas];
+
+        //creo las variables
+        double sumaAlturas = 0.0;
+        double maxima = -Double.MAX_VALUE; //inicializa la variable "max", con el valor más pequeño que puede guardar un double
+        //porque cualquier número que se introduzca, será mayor que este mínimo
+        double minima = Double.MAX_VALUE;// inicializa "min" con el valor más grande posible
+        //cualquier número que el usuario escriba sera menor que este
+        int contadorMas=0; //??
+        int contadorMenos=0;
+        for (int i = 0; i < ejercicio10.length; i++) { //recorro el array desde la posición 0 hasta la última posición del tamaño del array
+            System.out.println("Introduzca la altura de la persona: " + (i+1) + ": ");
+            ejercicio10[i] = sc.nextDouble(); //coge el número que el usuario escribe y lo guarda en la posición del array
+            sumaAlturas += ejercicio10[i]; //suma
+        }
+        double mediaAltura = sumaAlturas/ejercicio10.length;
+        System.out.println("La media es: " + mediaAltura);
+        //bucle para buscar el máximo y el mínimo
+        for (int i = 0; i < ejercicio10.length; i++) {
+            maxima = Math.max (ejercicio10[i], maxima); //compara el número actual del array con el valor que tenemos guardado en max, se queda con el mas grande
+            //lo va comparando con todos los numeros del array
+            minima = Math.min (ejercicio10[i], minima); //compara el número actual con el min guardado y se queda con el más pequeño de los dos
+        }
+        System.out.println("La media es: " + mediaAltura);
+        System.out.println("El más bajo es: " + minima);
+        System.out.println("El más alto es: " + maxima);
+
+        //recorro el array
+        for (int i = 0; i < ejercicio10.length; i++) { //recorro el array desde la posición 0 hasta la última posición del tamaño del array
+            if (ejercicio10[i] >= mediaAltura) {
+                contadorMas++;
+            }else {
+                contadorMenos++;
+            }
+        }
+        System.out.println("Hay " + contadorMas + " personas que miden mas de la media");
+        System.out.println("Hay " + contadorMenos + " personas que miden menos de la media");
+
+        //Ejercicio 11
+        System.out.println("Ejercicio 11");
+        sc = new Scanner(System.in);
+
+        //Crea un programa que cree dos arrays de enteros de tamaño 100. Luego introducirá en el primer array todos
+        //los valores del 1 al 100. Por último, deberá copiar todos los valores del primer array al segundo array
+        // en orden inverso, y mostrar ambos por pantalla.
+        int [] array1 = new int[100];
+        int [] array2 = new int[100];
+
+        for (int i = 0; i < array1.length; i++) {
+            array1[i] = i + 1; //guardo los numeros, la i empieza en 0, pongo el +1 para que empiece en 1
+    }
+        for (int i = 0; i < array2.length; i++) {
+            array2[i] = array1[(array1.length-1) -i];
+            //array1.length -1, va a ser 99 (la ultima posicion)
+        }
+        System.out.println(Arrays.toString(array1)); //muestro los array
+        System.out.println(Arrays.toString(array2));
+
 
 
 
