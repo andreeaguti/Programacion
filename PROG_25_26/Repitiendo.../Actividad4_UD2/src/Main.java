@@ -249,7 +249,84 @@ public class Main {
         System.out.println(Arrays.toString(array1)); //muestro los array
         System.out.println(Arrays.toString(array2));
 
+        //Ejercicio 12
+        System.out.println("Ejercicio 12");
+        sc = new Scanner(System.in);
 
+//Crea un programa que cree un array de 10 enteros y luego muestre el siguiente menú con distintas opciones:
+      //  a. Mostrar valores.
+      //  b. Introducir valor.
+       // c. Salir.
+//La opción ‘a’ mostrará todos los valores por pantalla. La opción ‘b’ pedirá un valor V y una posición P, luego escribirá V en la posición P del array. El menú se repetirá indefinidamente hasta que el usuario elija la opción ‘c’ que terminará el programa.
+
+        int [] array3 = new int[10];
+        String opcion = "";
+        int contadorPosicion = 0;
+
+        do{
+            System.out.println("Escoja la opcion deseada: ");
+            System.out.println("a. Mostrar valores");
+            System.out.println("b. Introducir valor: ");
+            System.out.println("c. Salir");
+            opcion = sc.nextLine();
+
+            switch (opcion) {
+                case "a":
+                        System.out.println(Arrays.toString(array3));
+                    break;
+                case "b":
+                    System.out.println("Introduzca la posicion P: ");
+                    contadorPosicion = sc.nextInt();
+
+                    if (contadorPosicion<array3.length && contadorPosicion >= 0) {
+                        System.out.println("Introduzca el valor: ");
+                        array3[contadorPosicion] = sc.nextInt(); //coge el valor que el usuario escribe y lo guarda en la posición del array
+                    }else{
+                        System.out.println("La posición no es valida");
+                    }
+                    break;
+                case "c":
+                    System.out.println("Saliendo...");
+                    break;
+                default:
+                    System.out.println("Escoja una opción correcta");
+            }
+        }while(!opcion.equals("c"));
+
+/* Ej 13: Crea un programa que permita al usuario almacenar una secuencia aritmética en un array y
+        luego mostrarla. Una secuencia aritmética es una serie de números que comienza por un valor inicial V,
+        y continúa con incrementos de I. Por ejemplo, con V=1 e I=2, la secuencia sería 1, 3, 5, 7, 9…
+        Con V=7 e I=10, la secuencia sería 7, 17, 27, 37… El programa solicitará al usuario V, I además de
+        N (nº de valores a crear).*/
+
+        System.out.println("Ejercicio 13");
+        sc = new Scanner(System.in);
+
+        System.out.println("Introduzca el tamaño del array ");
+        int tamano1 = sc.nextInt();
+
+        int [] array4 = new int[tamano1];
+
+        System.out.println("Introduzca el valor inicial: ");
+        int inicial = sc.nextInt();
+        System.out.println("Introduzca la incrementacion: ");
+        int incrementar = sc.nextInt();
+
+        array4[0] = inicial; //asigno manualmente el primer valor, con el valor inicial que me de el usuario
+
+        for (int i = 1; i < tamano1; i++) { //empezamos el bucle en el indice 1, porque el 0 ya le hemos rellenado
+            array4[i] = array4[i-1] + inicial; //en la posicion actual (i), guarda lo que habia en la posicion anterior (i-1) mas el inclemento
+        }
+        System.out.println(Arrays.toString(array4));
+
+//Crea un programa que cree un array de enteros e introduzca la siguiente secuencia de
+//valores: 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, etc. hasta introducir 10 diez veces, y luego la
+//muestre por pantalla.
+
+        System.out.println("Ejercicio 14");
+        sc = new Scanner(System.in);
+
+        int [] array5 = new int[55];
 
 
     }
