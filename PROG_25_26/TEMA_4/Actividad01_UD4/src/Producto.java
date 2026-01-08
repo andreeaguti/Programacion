@@ -22,6 +22,13 @@ public class Producto {
         this.cantidad = cantidad;
     }
 
+    public String verTipo() {
+        if (this.cantidad > 50) {
+            return "Producto demandado";
+        } else {
+            return "Producto Estándar";
+        }
+    }
     @Override
     public String toString() {
         return "Producto{" +

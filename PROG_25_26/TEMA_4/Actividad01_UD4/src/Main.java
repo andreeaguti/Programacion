@@ -29,23 +29,45 @@ public class Main {
         }
 
 //EJERCICIO 5: Elimina dos elementos del ArrayList.
-        /* Triangulo t = trians.remove(2);
-        System.out.println("Se ha eliminado el triángulo: " + t.verTipo()); */
+        //1- Elimina el elemento que ocupa la posición especificada en el argumento y retorna el elemento
+        //borrado.
+        // METODO: Object remove(int pos)
+        Producto p = productos.remove(1);
+        System.out.println("Se ha eliminado el producto: " + p.getNombre());
 
+        //2-Este metodo busca un objeto específico dentro de la lista. Para que funcione correctamente con objetos
+        // propios (como Producto), tu clase debería tener implementado el metodo .equals()
+        // METODO: boolean remove (Object o)
+        boolean eliminado = productos.remove(p5);
+        if (eliminado) {
+            System.out.println("Se ha eliminado el producto: " + eliminado);
+        }
 
+//EJERCICIO 6:Inserta un nuevo objeto producto en medio de la lista.
+        productos.add(2, new Producto("Planchas", 92));
+        System.out.println("Recorriendo de nuevo todos los elementos");
+        for (int i=0; i<productos.size(); i++) {
+            System.out.println(productos.get(i).toString());
+        }
 
+//EJERCICIO 7: Visualiza de nuevo el contenido de ArrayList utilizando Iterator.
+        Iterator<Producto> itera1 = productos.iterator();
+        Producto cadaProducto2;
+        while (itera1.hasNext()) {
+            cadaProducto2 = itera1.next();
+            System.out.println(cadaProducto2.toString());
+        }
 
+//EJERCICIO 9: Elimina todos los valores del ArrayList.
+        System.out.println("Productos antes de clear: " + productos.size());
+
+        productos.clear();
+
+        System.out.println("Productos después de clear: " + productos.size());
 
     }
 }
-/*A continuación, en el programa principal haz lo siguiente:
-1. Crea 5 instancias de la Clase Producto.
-2. Crea un ArrayList.
-3. Añade las 5 instancias de Producto al ArrayList.
-4. Visualiza el contenido de ArrayList utilizando Iterator.
-5. Elimina dos elementos del ArrayList.
-6. Inserta un nuevo objeto producto en medio de la lista.
-7. Visualiza de nuevo el contenido de ArrayList utilizando Iterator.
-8. Ordena la lista por el nombre del producto (hay que usar el método sort y el
-compateTo)
-9. Elimina todos los valores del ArrayList. */
+
+
+//8. Ordena la lista por el nombre del producto (hay que usar el método sort y el
+//compateTo)
