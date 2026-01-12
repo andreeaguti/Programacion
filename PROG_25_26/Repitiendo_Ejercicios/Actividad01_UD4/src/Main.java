@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 
 
@@ -67,9 +68,15 @@ public class Main {
             System.out.println(cadaProducto2.toString());
         }
 
-    //EJERCICIO 8:
+    //EJERCICIO 8: Ordena la lista por el nombre del producto (hay que usar el método sort y el
+    //compateTo)
         System.out.println("\nEjercicio 8");
 
+        Collections.sort(productos);
+
+        for(Producto p: productos){
+            System.out.println(p);
+        }
 
     //EJERCICIO 09: Elimina todos los valores del ArrayList.
         productos.clear();
