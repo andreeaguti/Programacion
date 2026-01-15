@@ -8,10 +8,10 @@ public class Agenda implements Comparable<Agenda> {
     //Variable auxiliar
     private int contadorContactos = 0;
 
+
     public Agenda(ArrayList<String> contactos) {
         this.contactos = contactos;
     }
-
 
     public ArrayList<String> getContactos() {
         return contactos;
@@ -50,6 +50,30 @@ public class Agenda implements Comparable<Agenda> {
 
     /*eliminaContacto: pide nombre del contacto a borrar. Recorre colección en busca del
 contacto y lo elimina, informando de la no existencia del mismo dado el caso. */
+
+    //Creo un bucle para buscar el que quiero eliminar
+    //Contacto cAux = null;
+    //for (Contacto c : contactos){
+    // if (p.getDni().equals(p1.getDni()))}
+    //pAux = p;
+    //break;
+    //}}
+    //if (pAux != null){
+    // personas.remove(pAux);
+    // }
+
+
+
+//primero crear un metodo para buscar contacto con for each
+    //Persona pAux = null;
+    //for (Persona p : personas){
+    // if (p.getDni().equals(p1.getDni()))}
+    //pAux = p;
+    //break;
+    //}}
+    //if (pAux != null){
+    // personas.remove(pAux);
+    // } este sirve para eliminar conjuntos, linkedlist y arraylist
 
 
 }
