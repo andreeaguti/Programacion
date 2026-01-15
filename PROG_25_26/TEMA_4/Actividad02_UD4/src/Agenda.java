@@ -51,15 +51,15 @@ public class Agenda implements Comparable<Agenda> {
     /*eliminaContacto: pide nombre del contacto a borrar. Recorre colección en busca del
 contacto y lo elimina, informando de la no existencia del mismo dado el caso. */
 
-    //Creo un bucle para buscar el que quiero eliminar
+    //Creo un bucle para buscar for each del que quiero eliminar
     //Contacto cAux = null;
     //for (Contacto c : contactos){
-    // if (p.getDni().equals(p1.getDni()))}
-    //pAux = p;
+    // if (p.getNombre().equals(c1.getNombre()))}
+    //cAux = c;
     //break;
     //}}
-    //if (pAux != null){
-    // personas.remove(pAux);
+    //if (cAux != null){
+    // contactos.remove(cAux);
     // }
 
 

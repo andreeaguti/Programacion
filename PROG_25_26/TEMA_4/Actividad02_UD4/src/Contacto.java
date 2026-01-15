@@ -52,6 +52,4 @@ public class Contacto {
     public int hashCode() {
         return Objects.hash(nombre, telefono, email);
     }
-
-
 }
