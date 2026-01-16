@@ -8,10 +8,6 @@ public class Agenda  {
 
     private TreeSet<Contacto> contactos;
 
-    //Variable auxiliar
-    //private int contadorContactos = 0;
-
-
     public Agenda() {
         this.contactos = new TreeSet<>();
     }
@@ -46,20 +42,22 @@ contacto y lo elimina, informando de la no existencia del mismo dado el caso. */
 
             Contacto cAux = null;
 
+            //busco el contacto
             for (Contacto contacto : contactos) {
                 if (contacto.getNombre().equals(n)) {
                     cAux = contacto;
                     break;
                 }
             }
-            boolean resultado = false;
-            System.out.println("Contacto no encontrado ");
 
             if (cAux != null) {
                 contactos.remove(cAux);
                 System.out.println(n + " eliminado");
+            } else {
+                System.out.println(n + " no encontrado");
             }
         }
+
     //este sirve para eliminar conjuntos, linkedlist y arraylist
 
     public void buscarContacto() {
@@ -94,14 +92,13 @@ contacto y lo elimina, informando de la no existencia del mismo dado el caso. */
 
     public void anadeContacto() {
         //Validación para nombre
-        MiUtils.comprobarPatronRepetidamente("^[A-Z][a-zA-Z]*$", "Introduzca el nombre: ");
+        String nombre = MiUtils.comprobarPatronRepetidamente("^[A-Z][a-zA-Z]*$", "Introduzca el nombre: ");
         //Validación para número de teléfono
-        MiUtils.comprobarPatronRepetidamente("^[679][0-9]{8}$", "Introduzca el numero de teléfono: ");
+        String telefono = MiUtils.comprobarPatronRepetidamente("^[679][0-9]{8}$", "Introduzca el numero de teléfono: ");
         //Validación para el correo
-        MiUtils.comprobarPatronRepetidamente("[a-z0-9._-]+@[a-z]+\\.[a-z]{2,4}", "Introduzca el correo: ");
+        String email = MiUtils.comprobarPatronRepetidamente("[a-z0-9._-]+@[a-z]+\\.[a-z]{2,4}", "Introduzca el correo: ");
 
-        Contacto nuevo = new Contacto();
-
+        Contacto nuevo = new Contacto(nombre, telefono, email);
 
         if (contactos.add(nuevo)) {
             System.out.println("Contacto añadido");
