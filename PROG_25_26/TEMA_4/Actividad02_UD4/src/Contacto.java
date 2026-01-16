@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public class Contacto {
+public class Contacto implements Comparable<Contacto> {
 
     private String nombre;
     private String telefono;
@@ -51,5 +51,10 @@ public class Contacto {
     @Override
     public int hashCode() {
         return Objects.hash(nombre, telefono, email);
+    }
+
+    @Override
+    public int compareTo(Contacto o) {
+        return this.nombre.compareTo(o.nombre);
     }
 }
