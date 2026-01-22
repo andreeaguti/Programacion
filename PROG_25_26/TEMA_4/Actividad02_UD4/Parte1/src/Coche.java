@@ -1,7 +1,7 @@
 
 import java.util.Objects;
 
-public class Coche {
+public class Coche implements Comparable<Coche> {
 
     private String color;
     private String marca;
@@ -45,10 +45,13 @@ public class Coche {
     public int hashCode() {
         return Objects.hash(color, marca);
     }
+
+
+    @Override
+    public int compareTo(Coche o) {
+        if (o != null) {
+            return this.marca.compareTo(o.marca);
+        }
+        return 1;
+    }
 }
-/*Clase Coche:
-Atributos: color y marca
-Métodos:
-Se espera encontrar en la clase los métodos Constructores necesarios, los métodos set y get, y aquellos que se consideren
-oportunos para el trabajo con objetos de tipo Coche. No hace falta validar los atributos.
-Se sugiere sobreescibir el método toString, para que muestre los atributos del objeto. */

@@ -2,7 +2,8 @@ import java.util.TreeSet;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class Agenda  {
+public class
+Agenda  {
     Scanner sc = new Scanner(System.in);
     //TreeSet<String> contactos = new TreeSet<>();
 
