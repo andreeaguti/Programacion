@@ -73,9 +73,37 @@ posibles excepciones y seguir pidiendo valores hasta rellenar completamente el v
 • La función main para realizar pruebas. Puedes llamar a ambas funciones varias veces
 con distintos valores, hacer un bucle para pedir valores por teclado y pasarlos a las
 funciones, etc. Maneja las posibles excepciones. */
-        System.out.println("Ejercicio 03");
+        System.out.println("Ejercicio 04");
         sc = new Scanner(System.in);
 
+        // Creamos el objeto de la clase donde están los métodos
+        Ejercicio4 ejercicio4 = new Ejercicio4();
+
+        try {
+            System.out.println("Introduzca un número positivo 'p' ");
+            int p = sc.nextInt();
+            ejercicio4.imprimePositivo(p);
+
+            System.out.println("Introduzca un número negativo 'n'");
+            int n = sc.nextInt();
+            ejercicio4.imprimeNegativo(n);
+        } catch (InputMismatchException e){
+            System.out.println("Error: ¡Debes introducir un número entero!");
+            sc.nextLine();
+        } catch (Exception e) {
+        // Se activa cuando lanzas el "throw new Exception" desde tus métodos
+        System.out.println("Error de lógica: " + e.getMessage());
+    }
+
+        /*Implementa una clase Gato con los atributos nombre y edad, un constructor con parámetros,
+los getters y setters, además de un metodo imprimir() para mostrar los datos de un gato. El
+nombre de un gato debe tener al menos 3 caracteres y la edad no puede ser negativa. Por ello,
+tanto en el constructor como en los setters, deberás comprobar que los valores sean válidos y
+lanzar una ‘Exception’ si no lo son. Luego, haz una clase principal con main para hacer pruebas:
+instancia varios objetos Gato y utiliza sus setters, probando distintos valores (algunos válidos y
+otros incorrectos). Maneja las excepciones. */
+        System.out.println("Ejercicio 05");
+        sc = new Scanner(System.in);
 
 
 
