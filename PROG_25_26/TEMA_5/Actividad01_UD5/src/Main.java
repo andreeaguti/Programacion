@@ -1,8 +1,7 @@
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws EdadIncorrectaException, NombreIncorrectoException {
         Scanner sc = new Scanner(System.in);
 
     /*EJERCICIO 1: Implementa un programa que pida al usuario un valor entero A utilizando un nextInt() (de
@@ -91,7 +90,7 @@ funciones, etc. Maneja las posibles excepciones. */
             System.out.println("Error: ¡Debes introducir un número entero!");
             sc.nextLine();
         } catch (Exception e) {
-        // Se activa cuando lanzas el "throw new Exception" desde tus métodos
+
         System.out.println("Error de lógica: " + e.getMessage());
     }
 
@@ -105,21 +104,61 @@ otros incorrectos). Maneja las excepciones. */
         System.out.println("Ejercicio 05");
         sc = new Scanner(System.in);
 
+        ArrayList<Gato> gatos = new ArrayList<>();
+        //instancia varios objetos Gato y utiliza sus setters
 
+        Gato g1 = new Gato("Lucas", 5);
+        gatos.add(g1);
 
+        try {
+        Gato g2 = new Gato("as", 8);
+        gatos.add(g2);
+        } catch (NombreIncorrectoException e) {
+            System.out.println("Error:" + e.getMessage());
+        }
 
+        Gato g3 = new Gato("Tobby", 10);
+        gatos.add(g3);
+        try {
+            Gato g4 = new Gato("mustafa", -5);
+            gatos.add(g4);
+        }catch (EdadIncorrectaException e) {
+            System.out.println("Error:" + e.getMessage());
+        }
 
+        for (Gato g: gatos) {
+            System.out.println(g.toString());
+        }
+/*Crea una copia del programa anterior y modifica el main para hacer lo siguiente:
+• Crea un ArrayList<Gato>. Luego, utilizando un bucle, pide al usuario que introduzca los
+datos de 5 gatos: utiliza un Scanner para pedir los datos, instancia el objeto y guárdalo
+en el ArrayList. Por último, imprime la información de los gatos.
+• Maneja las posibles excepciones de modo que en el ArrayList solo almacenemos objetos
+Gato válidos y el bucle se repita hasta crear y almacenar correctamente 5 gatos.*/
+        System.out.println("Ejercicio 06");
+        sc = new Scanner(System.in);
 
+        ArrayList<Gato> ejercicio6 = new ArrayList<>(5);
 
-
-
-
-
-
-
-
-
-
+        //instancia varios objetos Gato y utiliza sus setters
+        while(ejercicio6.size() < 5) {
+            try {
+                System.out.println("Introduzca nombre del gato: ");
+                String nombre = sc.next();
+                System.out.println("Introduzca edad del gato: ");
+                int edad = sc.nextInt();
+                gatos.add(new Gato(nombre, edad));
+            }catch (EdadIncorrectaException e) {
+                System.out.println("Error:La edad tiene que ser positiva" );
+                sc.nextLine();
+            }catch (NombreIncorrectoException e) {
+                System.out.println("Error:El nombre tiene que tener mas de 3 caracteres");
+                sc.nextLine();
+            }
+            for(Gato g: gatos) {
+                System.out.println(g.toString());
+            }
+        }
 
 
 
