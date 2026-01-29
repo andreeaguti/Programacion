@@ -1,20 +1,23 @@
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 public class CuentaBancaria {
     private String IBAN;
     private String titular;
     private double saldo;
 
-    private Movimiento[] movimientos;
+    //VOY A UTILIZAR LINKEDHASHSET
+    private Set<Movimiento> movimientos;
+    //en los corchetes pueden ir String, Integer, Double o clases
 
-    private int contadorMovimientos;
 
     public CuentaBancaria(String IBAN, String titular) {
         this.IBAN = IBAN;
         this.titular = titular;
 
-        this.movimientos = new Movimiento[100];
+        this.movimientos = new LinkedHashSet<>();
         this.saldo = 0.0;
 
-        this.contadorMovimientos = 0;
     }
 
     public String getIBAN() {
@@ -27,6 +30,14 @@ public class CuentaBancaria {
 
     public double getSaldo() {
         return this.saldo;
+    }
+
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+
+    public Set<Movimiento> getMovimientos() {
+        return movimientos;
     }
 
     public boolean ingresar(double valor) {
@@ -42,7 +53,7 @@ public class CuentaBancaria {
     public boolean retirar(double valor) {
         boolean retorno = false;
         double valorAbsoluto = Math.abs(valor);
-        if((this.saldo - valorAbsoluto) >= -50) {
+        if ((this.saldo - valorAbsoluto) >= -50) {
             this.saldo -= valorAbsoluto;
             this.generarMovimiento(Tipo.RETIRADA, valorAbsoluto);
             retorno = true;
@@ -50,23 +61,9 @@ public class CuentaBancaria {
         return retorno;
     }
 
-    public void generarMovimiento(Tipo tipo, double cantidad) {
-        if(this.contadorMovimientos < this.movimientos.length) {
-            this.movimientos[this.contadorMovimientos] = new Movimiento(tipo, cantidad);
-        }
-        else if(this.contadorMovimientos >= this.movimientos.length) {
-            this.ampliarDimensionMovimientos();
-            this.movimientos[this.contadorMovimientos] = new Movimiento(tipo, cantidad);
-        }
-        this.contadorMovimientos++;
-    }
 
-    private void ampliarDimensionMovimientos(){
-        Movimiento[] movimientosAux = new Movimiento[this.movimientos.length + 10];
-        for(int i = 0; i < this.movimientos.length; i++){
-            movimientosAux[i] = this.movimientos[i];
-        }
-        this.movimientos = movimientosAux;
+    public void generarMovimiento(Tipo tipo, double cantidad) {
+        this.movimientos.add(new Movimiento(tipo, cantidad));
     }
 
     public String infoCuentaBancaria() {
@@ -75,17 +72,20 @@ public class CuentaBancaria {
         info += "IBAN: " + this.IBAN + "\n";
         info += "Saldo: " + this.saldo + "\n";
         return info;
+
     }
 
+    /*Metodo para mostrar información*/
     public String infoMovimientos() {
-        String info = "";
-        if(this.contadorMovimientos > 0) {
-            for(int i = 0; i < this.contadorMovimientos; i++){
-                info += this.movimientos[i].mostrarInfoMovimiento() + "\n";
-            }
-        }else{
-            info = "No hay movimientos";
+        if (movimientos.isEmpty()) {
+            return "No hay movimientos";
         }
-        return info;
+
+        StringBuilder info = new StringBuilder("--- Listado de Movimientos ---\n");
+        for (Movimiento movimiento : movimientos) {
+            // Asumiendo que Movimiento tiene un buen toString()
+            info.append(movimiento).append("\n");
+        }
+        return info.toString();
     }
-}
+    }
