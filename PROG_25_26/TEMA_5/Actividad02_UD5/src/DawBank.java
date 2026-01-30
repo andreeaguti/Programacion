@@ -1,18 +1,8 @@
 import java.util.Scanner;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class DawBank {
     public static void main(String[] args) {
         Scanner sc;
-
-        final String ibanPattern = "[A-Z]{2}[0-9]{22}";
-        final String titularPattern = "[a-z A-Z]{3,}";
-
-        String titular = MiUtils.comprobarPatronRepetidamente(titularPattern, "Introduce un titular");
-        String IBAN = MiUtils.comprobarPatronRepetidamente(ibanPattern, "Introduce un IBAN");
-
-        CuentaBancaria miCuenta = new CuentaBancaria(IBAN, titular);
 
         String opcion = "";
 
@@ -22,17 +12,18 @@ public class DawBank {
             imprimirMenuOpciones();
             opcion = sc.nextLine();
 
+            CuentaBancaria miCuenta = null;
+
             switch (opcion) {
                 case "1":
-                    System.out.println(miCuenta.infoCuentaBancaria());
-                    break;
-
+                        System.out.println(miCuenta.infoCuentaBancaria());
+                        break;
                 case "2":
                     System.out.println("El IBAN es: " + miCuenta.getIBAN());
                     break;
 
                 case "3":
-                    System.out.println("El Titular es: " + miCuenta.getTitular());
+                    System.out.println("El Titular es: " + miCuenta.getCliente());
                     break;
 
                 case "4":
@@ -63,40 +54,8 @@ public class DawBank {
 
     }
 
-    private static void retirar(CuentaBancaria miCuenta) {
-        Scanner sc;
-        sc = new Scanner(System.in);
-        System.out.println("Introduce la cantidad a ingresar");
-        double retirar = sc.nextDouble();
-
-        if(miCuenta.retirar(retirar)){
-            System.out.println("La operación se ha realizado con exito");
-            if(Math.abs(retirar) > 3000){
-                System.out.println("Se ha notificado a hacienda del movimiento");
-            }
-        }else{
-            System.out.println("No se ha realizado la operación porque su saldo quedaria por debajo de -50€");
-        }
-    }
-
-    private static void ingresar(CuentaBancaria miCuenta) {
-        Scanner sc;
-        sc = new Scanner(System.in);
-        System.out.println("Introduce la cantidad a ingresar");
-        double cantidad = sc.nextDouble();
-
-        if(miCuenta.ingresar(cantidad)){
-            System.out.println("La operación se ha realizado con exito");
-            if(cantidad > 3000){
-                System.out.println("Se ha notificado a hacienda del movimiento");
-            }
-        }else{
-            System.out.println("Se ha producido un error en el proceso");
-        }
-    }
-
     private static void imprimirMenuOpciones() {
-        System.out.println("Escoga la opcion que desee");
+        System.out.println("Escoja la opcion que desee");
         System.out.println("1. Datos de la cuenta");
         System.out.println("2. IBAN");
         System.out.println("3. Titular");
