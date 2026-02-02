@@ -1,18 +1,32 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class DawBank {
     public static void main(String[] args) {
-        Scanner sc;
+        Scanner sc = new Scanner(System.in);
+        CuentaBancaria miCuenta = null;
 
         String opcion = "";
+        try {
+            System.out.println("Introduzca nombre del titular");
+            String nombre = sc.nextLine();
+            System.out.println("Introduzca DNI");
+            String dni = sc.nextLine();
+            System.out.println("Introduzca telefono");
+            String telefono = sc.nextLine();
+            Cliente cliente = new Cliente(nombre, dni, LocalDate.of(1990,1,1), telefono, "juliet@gmail.es", "calle tras, 7");
+            System.out.println("Introduzca la IBAN del titular");
+            String IBAN = sc.nextLine();
+            miCuenta = new CuentaBancaria(IBAN, cliente);
+        }catch (Exception e){
+            System.out.println("Error al crear la cuenta: " + e.getMessage());
+            return;
+        }
 
         do{
-            sc = new Scanner(System.in);
-
             imprimirMenuOpciones();
             opcion = sc.nextLine();
-
-            CuentaBancaria miCuenta = null;
 
             switch (opcion) {
                 case "1":
@@ -25,7 +39,7 @@ public class DawBank {
                 case "3":
                     System.out.println("El Titular es: " + miCuenta.getCliente());
                     break;
-
+/*
                 case "4":
                     System.out.println("El saldo es: " + miCuenta.getSaldo());
                     break;
@@ -44,7 +58,7 @@ public class DawBank {
 
                 case "8":
                     System.out.println("Gracias por elegir DawBANk, hasta la proxima.");
-                    break;
+                    break;*/
 
                 default:
                     System.out.println("Por favor, escoja la opcion correcta (1-8) ejem ejem ejem tonto");

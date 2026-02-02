@@ -45,8 +45,8 @@ public class CuentaBancaria {
     }
 
     public void setIBAN(String IBAN) throws IbanIncorrectoException{
-        if(IBAN.length()<23){
-            throw new IbanIncorrectoException("El IBAN debe tener 23 carácteres");
+        if(IBAN.length()<24){
+            throw new IbanIncorrectoException("El IBAN debe tener 24 carácteres");
         }else {
             this.IBAN = IBAN;
         }
@@ -94,7 +94,7 @@ public class CuentaBancaria {
         return info;
     }
 
-    /*Metodo para mostrar información*/
+    /*Metodo para mostrar información de los movimientos*/
     public String infoMovimientos() throws NoHayMovimientosException{
         if (movimientos.isEmpty()) {
             throw new NoHayMovimientosException("No se encontro el movimiento");
