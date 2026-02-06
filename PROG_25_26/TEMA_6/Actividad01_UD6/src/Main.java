@@ -1,22 +1,37 @@
-import java.io.FileWriter;
+import javax.swing.*;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileWriter;
 
 public class Main {
 
     private static ArrayList<Producto> productos = new ArrayList<>();
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
 
-        final String path = ".\\src\\resources\\";
+        final String path = ".\\resources\\";
         String fileName = "Almacen.dat";
+        boolean fileMode = true;
 
+        FileWriter file = null;
+        try{
+            file = new FileWriter(path+fileName, fileMode);
+        }catch (IOException e){
+            System.out.println("Error al abrir el archivo");
+            return;
+        }
+
+        Scanner sc = new Scanner(System.in);
         String opcion = "";
 
         do {
             imprimirMenuOpciones();
             opcion = sc.nextLine();
+
+            abrirFicehero();
 
             switch (opcion) {
                 case "1":
@@ -30,15 +45,33 @@ public class Main {
                     break;
                 case "4":
 
-
-
-
-
-
             }
         }while (!opcion.equals("5"));
 
     }
+    //METODO PARA ABRIR FICHERO
+    public static void abrirFicehero() {
+        final String path = ".\\src\\resources\\";
+        String fileName = "Almacen.dat";
+
+        try(FileReader file = new FileReader(path+fileName);
+            BufferedReader bufferedReader = new BufferedReader(file);){
+            String linea = "";
+            while(linea != null){
+                linea = bufferedReader.readLine();
+                if(linea != null){
+                    if(!linea.equals("")){
+                        System.out.println(linea);
+                    }
+
+                }
+            }
+
+        } catch (IOException e) {
+            System.out.println("Error: "+e.getMessage());
+        }
+    }
+
     //METODO PARA CREAR PRODUCTO
     public static void crearProducto() {
         Scanner sc = new Scanner(System.in);
@@ -66,7 +99,7 @@ public class Main {
         }
     }
 
-    //METODO PARA ELIMAR PRODUCTOS POR CÓDIGO
+    //METODO PARA ELIMINAR PRODUCTOS POR CÓDIGO
     public static void eliminarProductos() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Introduce el codigo del producto que desea eliminar: ");
@@ -96,4 +129,6 @@ public class Main {
         System.out.println("5. Salir");
         System.out.print("Seleccione una opción: ");
     }
+
+
 }
