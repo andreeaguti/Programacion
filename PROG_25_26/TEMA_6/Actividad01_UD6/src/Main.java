@@ -1,9 +1,6 @@
-import javax.swing.*;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.*;
-import java.io.BufferedReader;
 import java.io.FileWriter;
 
 public class Main {
@@ -12,17 +9,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        final String path = ".\\resources\\";
-        String fileName = "Almacen.dat";
-        boolean fileMode = true;
-
-        FileWriter file = null;
-        try{
-            file = new FileWriter(path+fileName, fileMode);
-        }catch (IOException e){
-            System.out.println("Error al abrir el archivo");
-            return;
-        }
+        abrirFicehero();
 
         Scanner sc = new Scanner(System.in);
         String opcion = "";
@@ -30,8 +17,6 @@ public class Main {
         do {
             imprimirMenuOpciones();
             opcion = sc.nextLine();
-
-            abrirFicehero();
 
             switch (opcion) {
                 case "1":
@@ -54,21 +39,10 @@ public class Main {
         final String path = ".\\src\\resources\\";
         String fileName = "Almacen.dat";
 
-        try(FileReader file = new FileReader(path+fileName);
-            BufferedReader bufferedReader = new BufferedReader(file);){
-            String linea = "";
-            while(linea != null){
-                linea = bufferedReader.readLine();
-                if(linea != null){
-                    if(!linea.equals("")){
-                        System.out.println(linea);
-                    }
-
-                }
-            }
-
+        try (FileWriter file = new FileWriter(path + fileName, true)) {
+            System.out.println("Archivo creado en: " + path + fileName);
         } catch (IOException e) {
-            System.out.println("Error: "+e.getMessage());
+            System.out.println("Error: No se encuentra la CARPETA. Asegúrate de que 'src/resources' existe.");
         }
     }
 
