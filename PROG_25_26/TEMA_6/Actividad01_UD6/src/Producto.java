@@ -43,7 +43,6 @@ public class Producto {
         this.precio = precio;
     }
 
-
     //Metodo toString para mostrar los datos de un producto
 
     @Override

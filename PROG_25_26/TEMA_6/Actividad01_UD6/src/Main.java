@@ -2,10 +2,12 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.*;
 import java.io.FileWriter;
+import java.util.concurrent.LinkedTransferQueue;
 
 public class Main {
 
-    private static ArrayList<Producto> productos = new ArrayList<>();
+    private static LinkedList<Producto> productos = new LinkedList<>();
+
 
     public static void main(String[] args) {
 
@@ -13,6 +15,7 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
         String opcion = "";
+
 
         do {
             imprimirMenuOpciones();
