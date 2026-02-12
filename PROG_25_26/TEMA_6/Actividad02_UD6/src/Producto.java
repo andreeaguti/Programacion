@@ -1,18 +1,25 @@
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Producto implements Serializable {
 
 
-public class Producto {
 
     private String codigo;
     private String nombre;
     private int cantidad;
     private double precio;
 
+    private List<String> productos;
 
     public Producto(String codigo, String nombre, int cantidad, double precio) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.precio = precio;
+        this.productos = new LinkedList<>();
     }
 
     //GETTERS
@@ -33,6 +40,11 @@ public class Producto {
     }
     //SETTERS
 
+
+    public List<String> getProductos() {
+        return productos;
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -46,7 +58,6 @@ public class Producto {
     }
 
     //Metodo toString para mostrar los datos de un producto
-
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Producto{");
@@ -60,3 +71,4 @@ public class Producto {
 
 
 }
+

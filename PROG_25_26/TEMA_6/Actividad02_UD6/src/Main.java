@@ -38,44 +38,56 @@ public class Main {
 
     //METODO PARA ABRIR FICHERO
     public static void abrirFichero() {
+        FileInputStream fichero;
+        DataInputStream lector;
 
-        final String path = ".\\src\\resources\\";
-        String fileName = "Almacen.dat";
-
-        try (FileReader file = new FileReader(path + fileName);
-             BufferedReader bufferedReader = new BufferedReader(file);){
-            String linea = "";
-            while(linea != null){
-                linea = bufferedReader.readLine();
-                if(linea != null){
-                    if(!linea.equals("")){
-                        String[] datos = linea.split(",");
-                        if (datos.length == 4){
-                            String codigo = datos[0];
-                            String nombre = datos[1];
-                            int cantidad = Integer.parseInt(datos[2]);
-                            double precio = Double.parseDouble(datos[3]);
-                            productos.add(new Producto(codigo, nombre, cantidad, precio));
-                        }
-                        System.out.println(linea);
-                    }
-                }
+        try{
+            fichero = new FileInputStream("Almacen.dat");
+            lector = new DataInputStream(fichero);
+        }catch (IOException e){
+            System.out.println("Error al abrir fichero");
+            System.out.println(e.getMessage());
+            return;
+        }
+        boolean eof = false;
+        while (!eof) {
+            try{
+                String codigo = lector.readUTF();
+                String nombre = lector.readUTF();
+                int can = lector.readInt();
+                double pre = lector.readDouble();
+                Producto p = new Producto(codigo, nombre, can, pre);
+                productos.add(p); //LOS AÑADO AL LINKEDlIST
+                System.out.println(p);
+            } catch (EOFException e) {
+                eof = true;
+            }catch (IOException e2){
+                System.out.println("Error al leer fichero");
+                System.out.println(e2.getMessage());
+                break;
             }
-        } catch (IOException e) {
-            System.out.println("Error: "+e.getMessage());
+        }
+        try{
+            lector.close();
+            fichero.close();
+        }catch (IOException e){
+            System.out.println("Error al cerrar el fichero");
+            System.out.println(e.getMessage());
         }
     }
 
     //METODO PARA GUARDAR
     public static void guardarEnFichero() {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(PATH))) {
+        try (DataOutputStream dos = new DataOutputStream(new FileOutputStream(PATH))) {
             for (Producto p : productos) {
-                bw.write(p.toString());
-                bw.newLine();
+                dos.writeUTF(p.getCodigo());
+                dos.writeUTF(p.getNombre());
+                dos.writeInt(p.getCantidad());
+                dos.writeDouble(p.getPrecio());
             }
-            System.out.println("Datos guardados en " + PATH);
+            System.out.println("Datos guardados en Almacen.dat");
         } catch (IOException e) {
-            System.out.println("Error al guardar: " + e.getMessage());
+            System.out.println("Error al guardar en el fichero: " + e.getMessage());
         }
     }
     //METODO PARA CREAR PRODUCTO
@@ -90,9 +102,11 @@ public class Main {
             int cantidad = sc.nextInt();
             System.out.println("Introduce el precio del producto: ");
             double precio = sc.nextDouble();
+            sc.nextLine();
 
             Producto nuevo = new Producto(codigo, nombre, cantidad, precio);
             productos.add(nuevo);
+
         }catch (InputMismatchException e){
             System.out.println("Error: "+e.getMessage());
         }
