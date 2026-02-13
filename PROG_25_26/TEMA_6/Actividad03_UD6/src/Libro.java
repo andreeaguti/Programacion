@@ -1,11 +1,8 @@
-import java.io.Serial;
-import java.io.Serializable;
+import java.io.*;
 import java.time.LocalDate;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Objects;
 
 public class Libro implements Serializable {
-
 
     @Serial
     private static final long serialVersionUID = 5976617470545454419L;
@@ -15,14 +12,11 @@ public class Libro implements Serializable {
     private String autor;
     private LocalDate fechaPublicacion;
 
-    private List<String> autores;
-
     public Libro(String isbn, String titulo, String autor, LocalDate fechaPublicacion) {
         this.isbn = isbn;
         this.titulo = titulo;
         this.autor = autor;
         this.fechaPublicacion = fechaPublicacion;
-        this.autores = new LinkedList<>();
     }
 
     public String getIsbn() {
@@ -41,9 +35,6 @@ public class Libro implements Serializable {
         return fechaPublicacion;
     }
 
-    public List<String> getAutores() {
-        return autores;
-    }
 
     @Override
     public String toString() {
@@ -52,8 +43,22 @@ public class Libro implements Serializable {
         sb.append(", titulo='").append(titulo).append('\'');
         sb.append(", autor='").append(autor).append('\'');
         sb.append(", fechaPublicacion=").append(fechaPublicacion);
-        sb.append(", autores=").append(autores);
         sb.append('}');
         return sb.toString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Libro libro = (Libro) o;
+        return Objects.equals(isbn, libro.isbn);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(isbn);
+    }
+
+
+
 }

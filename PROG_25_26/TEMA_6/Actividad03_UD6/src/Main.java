@@ -1,21 +1,29 @@
-import java.util.LinkedList;
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.*;
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class Main {
 
-    private static LinkedList<Libro> libros = new LinkedList<>();
+    private static Set<Libro> biblioteca = new HashSet<>();
 
     public static void main(String[] args) {
+
+        Biblioteca biblioteca = new Biblioteca();
 
         Scanner sc = new Scanner(System.in);
         String opcion = "";
 
         do {
+
             imprimirMenuOpciones();
             opcion = sc.nextLine();
 
             switch (opcion) {
                 case "1":
+                    //crear producto
 
                     break;
                 case "2":
@@ -25,7 +33,7 @@ public class Main {
 
                     break;
                 case "4":
-
+                    biblioteca.guardarEnFichero();
                     break;
                 case "5":
                     System.out.println("Guardando y cerrando programa...");
@@ -42,4 +50,5 @@ public class Main {
         System.out.println("5. Guardar y Salir ");
         System.out.print("Seleccione una opción: ");
     }
-    }
+
+}
