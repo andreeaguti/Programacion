@@ -1,17 +1,12 @@
-import java.io.DataOutputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.*;
-import java.util.HashSet;
 import java.util.Scanner;
 
 public class Main {
-
-    private static Set<Libro> biblioteca = new HashSet<>();
-
     public static void main(String[] args) {
 
         Biblioteca biblioteca = new Biblioteca();
+        ArrayList<String> libros = new ArrayList<String>();
+
 
         Scanner sc = new Scanner(System.in);
         String opcion = "";
@@ -23,20 +18,21 @@ public class Main {
 
             switch (opcion) {
                 case "1":
-                    //crear producto
-
+                    biblioteca.crearLibro();
                     break;
                 case "2":
-
+                    Biblioteca.mostrarLibros();
                     break;
                 case "3":
-
+                    Biblioteca.eliminarLibro();
                     break;
                 case "4":
-                    biblioteca.guardarEnFichero();
+                    Biblioteca.guardarEnFichero();
                     break;
                 case "5":
                     System.out.println("Guardando y cerrando programa...");
+                    Biblioteca.guardarEnFichero();
+                    break;
             }
         }while (!opcion.equals("5"));
     }
@@ -50,5 +46,4 @@ public class Main {
         System.out.println("5. Guardar y Salir ");
         System.out.print("Seleccione una opción: ");
     }
-
 }

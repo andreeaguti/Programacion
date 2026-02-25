@@ -10,9 +10,9 @@ public class Libro implements Serializable {
     private String isbn;
     private String titulo;
     private String autor;
-    private LocalDate fechaPublicacion;
+    private String fechaPublicacion;
 
-    public Libro(String isbn, String titulo, String autor, LocalDate fechaPublicacion) {
+    public Libro(String isbn, String titulo, String autor, String fechaPublicacion) {
         this.isbn = isbn;
         this.titulo = titulo;
         this.autor = autor;
@@ -31,7 +31,7 @@ public class Libro implements Serializable {
         return autor;
     }
 
-    public LocalDate getFechaPublicacion() {
+    public String getFechaPublicacion() {
         return fechaPublicacion;
     }
 
