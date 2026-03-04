@@ -8,11 +8,14 @@ public class Pelicula extends Articulo{
     private LocalDateTime fechaAlquiler;
     private boolean isAlquilada;
 
+    private static int contadorPeliculas = 0;
+
     public Pelicula(String codigo, String titulo, LocalDate fechaRegistro, LocalDate fechaBaja, Genero genero, LocalDateTime fechaAlquiler, boolean isAlquilada) {
         super(codigo, titulo, fechaRegistro, fechaBaja);
         this.genero = genero;
         this.fechaAlquiler = fechaAlquiler;
         this.isAlquilada = isAlquilada;
+        contadorPeliculas++;
     }
 //getter
     public Genero getGenero() {
