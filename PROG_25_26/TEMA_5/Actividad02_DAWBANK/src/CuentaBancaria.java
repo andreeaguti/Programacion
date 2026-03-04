@@ -3,7 +3,9 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class CuentaBancaria {
+
     private String IBAN;
+    private Cliente Cliente;
     private double saldo;
 
     //Debe de tener un atributo/propiedad de tipo cliente.
@@ -13,7 +15,7 @@ public class CuentaBancaria {
     private Set<Movimiento> movimientos;
     //en los corchetes pueden ir String, Integer, Double o clases
 
-    public CuentaBancaria(String IBAN, Cliente cliente) throws IbanIncorrectoException{
+    public CuentaBancaria(String IBAN,String nombre, String dni, Cliente cliente) throws IbanIncorrectoException{
         this.setIBAN(IBAN);
         this.saldo = 0.0;
         this.cliente = cliente;
@@ -106,4 +108,4 @@ public class CuentaBancaria {
         }
         return info.toString();
     }
-    }
+}

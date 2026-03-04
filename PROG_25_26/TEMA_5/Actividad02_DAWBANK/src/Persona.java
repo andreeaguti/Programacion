@@ -2,6 +2,8 @@
 fecha). */
 
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneOffset;
 
 public class Persona {
     private String nombre;
@@ -47,4 +49,9 @@ public class Persona {
         sb.append('}');
         return sb.toString();
     }
+
+    /*
+    LocalDate.now().minusYears(18)
+    Long diferencia = LocalDate.now().toEpochSecond(LocalTime.MIDNIGHT, ZoneOffset.of(UTC)) - this.getFechaNacimiento().toEpochSecond;
+    */
 }

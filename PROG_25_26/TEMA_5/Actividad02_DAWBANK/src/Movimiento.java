@@ -2,7 +2,6 @@
 metodo toString() para que muestre toda la información del movimiento y elimina el
 metodo mostrarInfoMovimiento(). */
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 

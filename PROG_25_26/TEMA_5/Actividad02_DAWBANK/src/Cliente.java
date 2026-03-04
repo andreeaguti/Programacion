@@ -17,9 +17,36 @@ public class Cliente extends Persona{
         this.direccion = direccion;
     }
 
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Cliente{");
+        sb.append("nombre='").append(this.getNombre()).append('\'');
+        sb.append(", dni='").append(this.getDni()).append('\'');
+        sb.append(", fecha nacimiento='").append(this.getFechaNacimiento()).append('\'');
         sb.append("telefono='").append(telefono).append('\'');
         sb.append(", email='").append(email).append('\'');
         sb.append(", direccion='").append(direccion).append('\'');

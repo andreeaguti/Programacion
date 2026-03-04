@@ -19,16 +19,18 @@ public class Articulo implements Serializable {
     }
 
     //GETTER
-    public String  getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
     public String getTitulo() {
         return titulo;
     }
+
     public LocalDate getFechaRegistro() {
         return fechaRegistro;
     }
+
     public LocalDate getFechaBaja() {
         return fechaBaja;
     }
@@ -53,12 +55,10 @@ public class Articulo implements Serializable {
         Articulo articulo = (Articulo) o;
         return Objects.equals(codigo, articulo.codigo);
     }
+
     @Override
     public int hashCode() {
         return Objects.hashCode(codigo);
     }
-
-    //dejo esto aqui para cuando quiera crear articulo
-    /*
-    }
+}
 
