@@ -14,9 +14,9 @@ public class VideoDaw {
     private List<Cliente> clientesRegistrados;
     private List<Pelicula> peliculasRegistradas;
 
-    private int contadorArticulosAlquilados;
-    private int contadorClientesRegistrados;
-    private int contadorPeliculasRegistradas;
+    private int contadorArticulos;
+    private int contadorClientes;
+    private int contadorPeliculas;
 
 
     public VideoDaw(String cif, String direccion, LocalDate fechaAlta, List<Articulo> articulosRegistrados, List<Cliente> clientesRegistrados) {
@@ -99,20 +99,20 @@ public class VideoDaw {
         Pelicula nueva = new Pelicula(codigo, titulo, fechaRegistro, fechaBaja, genero, fechaAlquiler, isAlquilada);
 
         System.out.println("Película registrada: " + nueva.toString());
-        contadorPeliculasRegistradas++;
     }
 
     //METODO PARA VER LAS PELICULAS REGISTRADAS mostrarPeliculasRegistradas().
 
-    public String mostrarPeliculasRegistradas(){
-            if(peliculasRegistradas.size() <= 0){
-                System.out.println("Lista de peliculas vacia");
-            }else {
-                for (Pelicula art : peliculasRegistradas) {
-                    System.out.println(peliculasRegistradas.toString());
-                }
+    public String mostrarPeliculasRegistradas() {
+        String info = "No hay peliculas registradas";
+        if (peliculasRegistradas.size() <= 0) {
+            System.out.println("Lista de peliculas vacia");
+        } else {
+            for (Pelicula art : peliculasRegistradas) {
+                System.out.println(peliculasRegistradas.toString());
             }
-        return "";
+        }
+        return info;
     }
 
     //METODO PARA REGISTRAR CLIENTES
@@ -160,7 +160,7 @@ public class VideoDaw {
             // Al llamar al constructor, la colección se crea vacía automáticamente
             Cliente nuevo = new Cliente(dni, nombre, direccion, fechaNacimiento, numSocio, fechaBaja);
 
-            // Lo añadimos a nuestra lista de la clase principal/gestora
+            // Lo añado a la lista
             clientesRegistrados.add(nuevo);
 
             System.out.println("Cliente registrado con éxito.");
@@ -170,21 +170,76 @@ public class VideoDaw {
         }
     }
 
-    public String mostrarClientesRegistrados(){
-        if(clientesRegistrados.size() <= 0){
+    public String mostrarClientesRegistrados() {
+        String info = "No hay clientes registrados";
+        if (clientesRegistrados.size() <= 0) {
             System.out.println("Lista de clientes vacia");
-        }else {
+        } else {
             for (Cliente cliente : clientesRegistrados) {
                 System.out.println(clientesRegistrados.toString());
             }
         }
-        return "";
+        return info;
     }
-    //Un método para alquilar una película alquilar película o videojuego, comprobar que eseartículo no esté ya alquilado.
 
-    public void alquilarPeliculaVideojuego(){
+    //Un método para alquilar una película alquilar película o videojuego, comprobar que ese artículo no esté ya alquilado.
+    public void alquilarArticulo(Pelicula pelicula, Articulo articulo) {
         Scanner sc = new Scanner(System.in);
 
+        String codSocio = MiUtils.comprobarPatronRepetidamente("^S-\\d{4}$", "Introduzca su código de socio (ej: S-0001):");
+        Cliente clienteEncontrado = null;
+
+        for (Cliente c : clientesRegistrados) {
+            if (c.getNumSocio().equals(codSocio)) {
+                clienteEncontrado = c;
+                break;
+            }
+        }
+        if (clienteEncontrado == null) {
+            System.out.println("Error: El cliente no está registrado.");
+        }
+
+        String codArticulo = MiUtils.comprobarPatronRepetidamente("^P-\\d{4}$", "Introduzca el código del artículo a alquilar (ej: P-0001):");
+        Articulo articuloEncontrado = null;
+
+        for (Articulo a : articulosRegistrados) {
+            if (a.getCodigo().equals(codArticulo)) {
+                articuloEncontrado = a;
+                break;
+            }
+        }
+        if (articuloEncontrado != null) {
+
+            boolean yaAlquilado = false;
+            if (articuloEncontrado instanceof Pelicula) {
+                yaAlquilado = ((Pelicula) articuloEncontrado).isAlquilada();
+            } else if (articuloEncontrado instanceof Videojuego) {
+                yaAlquilado = ((Videojuego) articuloEncontrado).isAlquilada();
+            }
+
+            if (!yaAlquilado) {
+                if (articuloEncontrado instanceof Pelicula) {
+                    ((Pelicula) articuloEncontrado).setAlquilada(true);
+                    ((Pelicula) articuloEncontrado).setFechaAlquiler(LocalDateTime.now());
+                } else {
+                    ((Videojuego) articuloEncontrado).setAlquilada(true);
+                    ((Videojuego) articuloEncontrado).setFechaAlquiler(LocalDateTime.now());
+                }
+
+                clienteEncontrado.getArticulosAlquilados().add(articuloEncontrado);
+                System.out.println("Alquiler realizado con éxito: " + articuloEncontrado.getTitulo());
+
+            } else {
+                System.out.println("Lo sentimos, este artículo ya se encuentra alquilado.");
+            }
+        } else {
+            System.out.println("No se ha encontrado ningún artículo con ese código.");
+        }
     }
 
-}
+
+
+
+    }
+
+
