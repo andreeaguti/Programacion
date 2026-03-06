@@ -19,7 +19,7 @@ public class VideoDaw {
     private int contadorPeliculas;
 
 
-    public VideoDaw(String cif, String direccion, LocalDate fechaAlta, List<Articulo> articulosRegistrados, List<Cliente> clientesRegistrados) {
+    public VideoDaw(String cif, String direccion, LocalDate fechaAlta, List<Articulo> articulosRegistrados, List<Cliente> clientesRegistrados, List<Pelicula> peliculasRegistradas) throws DireccionIncorrectaException, Exception{
         this.cif = cif;
         this.direccion = direccion;
         this.fechaAlta = fechaAlta;
@@ -48,8 +48,12 @@ public class VideoDaw {
         return clientesRegistrados;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setDireccion(String direccion) throws DireccionIncorrectaException{
+        if (direccion == null) {
+            throw new DireccionIncorrectaException("La dirección no puede estar vacía");
+        } else {
+            this.direccion = direccion;
+        }
     }
 
     public void setArticulosRegistrados(List<Articulo> articulosRegistrados) {
@@ -84,9 +88,15 @@ public class VideoDaw {
         String titulo = sc.nextLine();
 
         //Género
-        System.out.println("Introduzca el género de la película: ");
-        Genero genero = Genero.valueOf(sc.nextLine().toUpperCase());
-
+        Genero genero = null;
+        while (genero == null) {
+            try{
+                System.out.println("Introduzca el género (ACCION, COMEDIA, TERROR, DRAMA...): ");
+                genero = Genero.valueOf(sc.nextLine().toUpperCase());
+            }catch(IllegalArgumentException e) {
+                System.out.println("Error: El género introducido no es válido.");
+            }
+        }
         //Fechas automaticas
         LocalDate fechaRegistro = LocalDate.now();
         LocalDate fechaBaja = null;
@@ -97,6 +107,8 @@ public class VideoDaw {
 
         // Creo la pelicula
         Pelicula nueva = new Pelicula(codigo, titulo, fechaRegistro, fechaBaja, genero, fechaAlquiler, isAlquilada);
+        peliculasRegistradas.add(nueva);
+        articulosRegistrados.add(nueva);
 
         System.out.println("Película registrada: " + nueva.toString());
     }
@@ -183,7 +195,7 @@ public class VideoDaw {
     }
 
     //Un método para alquilar una película alquilar película o videojuego, comprobar que ese artículo no esté ya alquilado.
-    public void alquilarArticulo(Pelicula pelicula, Articulo articulo) {
+    public void alquilarArticulo() {
         Scanner sc = new Scanner(System.in);
 
         String codSocio = MiUtils.comprobarPatronRepetidamente("^S-\\d{4}$", "Introduzca su código de socio (ej: S-0001):");
@@ -236,6 +248,41 @@ public class VideoDaw {
             System.out.println("No se ha encontrado ningún artículo con ese código.");
         }
     }
+
+
+    public void darBajaCliente() throws Exception{
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Introduce el numero de cliente que desea dar de baja (S-0001): ");
+        String bajaCliente = sc.nextLine();
+        for (Cliente c : clientesRegistrados) {
+            if (c.getNumSocio().equals(bajaCliente)) {
+                clientesRegistrados.remove(c);
+                System.out.println("Cliente eliminado correctamente.");
+                break;
+            }else {
+                throw new Exception("No existe el producto con el referencia: " + bajaCliente);
+            }
+        }
+    }
+
+    public void darBajaArticulo() throws Exception{
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Introduce el numero de articulo que desea dar de baja (P-0001): ");
+        String bajaArticulo = sc.nextLine();
+        for (Articulo a : articulosRegistrados) {
+            if (a.getCodigo().equals(bajaArticulo)) {
+                articulosRegistrados.remove(a);
+                System.out.println("Articulo eliminado correctamente.");
+                break;
+            }else {
+                throw new Exception("No existe el producto con el código: " + bajaArticulo);
+            }
+        }
+    }
+
+
 
 
 
