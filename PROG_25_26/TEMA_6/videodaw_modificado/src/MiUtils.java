@@ -1,7 +1,10 @@
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 
 public class MiUtils {
-
     //Generacion aleatoria de letras en mayusculas
     public static char generarLetraAleatoria(){
         char c = (char) Math.max(65, (int)((Math.random() * 90) + 1));
@@ -49,6 +52,8 @@ public class MiUtils {
         return valor;
     }
 
+    //COMPROBAR REPETIDAMENTE QUE UN PATRON SE REPITE.
+
     public static String comprobarPatronRepetidamente(String patron, String mensaje){
         boolean isOk = false;
         String texto;
@@ -62,5 +67,23 @@ public class MiUtils {
         return texto;
     }
 
+    //COMPROBAR SI UNA FECHA ES MAYOR QUE OTRA EN CUANTOS AÑOS. (METODO NUEVO MIO)
 
-}
+    public static boolean minimoEdad(LocalDate fechaNacimiento) {
+        if (fechaNacimiento == null) return false;
+        // Segundos que equivalen a 18 años
+        long SEGUNDOS_18_ANIOS = 31557600L * 18;
+        // Zona horaria del sistema
+        ZoneId zoneId = ZoneId.systemDefault();
+        // Pasar la fecha de nacimiento a epoch seconds (a medianoche)
+        long nacimientoEpoch = fechaNacimiento.atStartOfDay(zoneId).toEpochSecond();
+        // Epoch seconds actuales
+        long ahoraEpoch = LocalDateTime.now().atZone(zoneId).toEpochSecond();
+        // Diferencia entre ambas fechas
+        long diferencia = ahoraEpoch - nacimientoEpoch;
+        return diferencia >= SEGUNDOS_18_ANIOS;
+    }
+
+
+
+}//MAIN CLASS MIUTILS

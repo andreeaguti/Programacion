@@ -1,24 +1,37 @@
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.io.Serializable;
 
-public class Persona {
+//CLASE MADRE DE LOS CLIENTES
+//Si en tu videoclub no vas a crear objetos "Persona" a secas (solo Clientes o Empleados), podrías poner public abstract class Persona.
+//Esto impide que alguien haga new Persona(...) por error.
 
-    private String dni;
-    private String nombre;
-    private String direccion;
-    private LocalDate fechaNacimiento;
+public class Persona implements Serializable {
+//Serializable: Fundamental para que los datos del cliente no se borren al cerrar el programa.
 
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static final long serialVersionUID = -8277680958705568161L;
 
-    public Persona(String dni, String nombre, String direccion, LocalDate fechaNacimiento) throws DniIncorrectoException{
-        this.dni = dni;
+    //ATRIBUTOS
+    protected String DNI;
+    protected String nombre;
+    protected String direccion;
+    protected LocalDate fechaNacimiento;
+//Usamos esta clase para la fecha de nacimiento porque no nos interesa la hora en la que nació el cliente, solo el día.
+
+    //CONSTRUCTOR
+
+    public Persona(String DNI, String nombre, String direccion, LocalDate fechaNacimiento) {
+        this.DNI = DNI;
         this.nombre = nombre;
         this.direccion = direccion;
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public String getDni() {
-        return dni;
+
+    //GETTERS
+
+
+    public String getDNI() {
+        return DNI;
     }
 
     public String getNombre() {
@@ -33,30 +46,29 @@ public class Persona {
         return fechaNacimiento;
     }
 
-    public String getFechaNacimientoFormato(){
-        return this.fechaNacimiento.format(formatter);
+    //SETTERS
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
 
-    public void setDni(String dni) throws DniIncorrectoException{
-        if(this.dni==null){
-            throw new DniIncorrectoException("El dni no puede ser nulo");
-        }else {
-            this.dni = dni;
-        }
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
+
+    //TOSTRING
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Persona{");
-        sb.append("dni='").append(dni).append('\'');
-        sb.append(", nombre='").append(nombre).append('\'');
-        sb.append(", direccion='").append(direccion).append('\'');
-        sb.append(", fechaNacimiento=").append(fechaNacimiento);
-        sb.append('}');
-        return sb.toString();
+        return "Persona{" +
+                "DNI='" + DNI + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", fechaNacimiento=" + fechaNacimiento +
+                '}';
     }
-}
+}//CIERRE CLASE PERSONA
