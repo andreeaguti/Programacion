@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Actividad01_UD6/Actividad01_UD6.iml" filepath="$PROJECT_DIR$/Actividad01_UD6/Actividad01_UD6.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Actividad02_UD6/Actividad02_UD6.iml" filepath="$PROJECT_DIR$/Actividad02_UD6/Actividad02_UD6.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Actividad03_UD6/Actividad03_UD6.iml" filepath="$PROJECT_DIR$/Actividad03_UD6/Actividad03_UD6.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Actividad04_UD6/Actividad04_UD6.iml" filepath="$PROJECT_DIR$/Actividad04_UD6/Actividad04_UD6.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Examen_2ev/Examen_2ev.iml" filepath="$PROJECT_DIR$/Examen_2ev/Examen_2ev.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FicheroSerializable/FicheroSerializable.iml" filepath="$PROJECT_DIR$/FicheroSerializable/FicheroSerializable.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FicherosSerializables/FicherosSerializables.iml" filepath="$PROJECT_DIR$/FicherosSerializables/FicherosSerializables.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/TEMA_6.iml" filepath="$PROJECT_DIR$/.idea/TEMA_6.iml" />
+      <module fileurl="file://$PROJECT_DIR$/VideoDaw_TextoPlano/VideoDaw_TextoPlano.iml" filepath="$PROJECT_DIR$/VideoDaw_TextoPlano/VideoDaw_TextoPlano.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Videodaw_Binario/Videodaw_Binario.iml" filepath="$PROJECT_DIR$/Videodaw_Binario/Videodaw_Binario.iml" />
+    </modules>
+  </component>
+</project>

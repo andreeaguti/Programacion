@@ -57,7 +57,7 @@ public class GestionVideoDaw {
 
                     if (tipo.equals("1")) {
                         // LÓGICA DE PELÍCULA
-                        System.out.println("Seleccione un género:");
+                                System.out.println("Seleccione un género:");
                         for (Genero g : Genero.values()) { System.out.println("- " + g); }
                         Genero genero = Genero.valueOf(sc.nextLine().toUpperCase());
 
