@@ -5,12 +5,10 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-
-
 public class SQLAccessMercaDaw {
 
 
-
+    //ESTE METODO ME SIRVE PARA VER SOLO EL NOMBRE DE TODOS LOS PRODUCTOS
     public static List<String> getProductosName(){ //declaro metodo público, que devuelve una lista de cadenas de texto
         List<String> producto = new LinkedList<>();//Crea una lista vacía donde irás guardando los nombres que encuentres en la base de datos.
 
@@ -41,33 +39,6 @@ public class SQLAccessMercaDaw {
 
         //Una vez terminado el bucle y cerrada la conexión, el metodo entrega la lista llena con todas las referencias encontradas.
         return producto;
-    }
-
-    public static List<Character> getCharacters(){
-        List<Character> productos = new LinkedList<>();
-
-        //Consulta SQL
-        String sqlProducto = "SELECT * FROM producto";
-
-        try(Connection connection = SqlDataManager.getConnection();
-            Statement statement = connection.createStatement();
-            ResultSet resultSets = statement.executeQuery(sqlProducto)) {
-            while (resultSets.next()) {
-                int id = resultSets.getInt(1);
-                String name = resultSets.getNString(2);
-                String fullname = resultSets.getNString(3);
-                String gender = resultSets.getNString(7);
-                String race = resultSets.getNString(8);
-                String aligment = resultSets.getNString(9);
-
-                productos.add(new Character(id, name, fullname, gender, race, aligment));
-
-            }
-
-        } catch (SQLException e) {
-            System.err.println("SQLException: " + e.getMessage());
-        }
-        return  productos;
     }
 
 
