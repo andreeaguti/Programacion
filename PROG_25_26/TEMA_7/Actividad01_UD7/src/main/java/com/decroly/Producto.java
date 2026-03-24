@@ -12,9 +12,6 @@ public class Producto {
     private int iva;
     private boolean aplicarDto;
 
-    // Constructor vacío
-    public Producto() {}
-
     // Constructor completo
     public Producto(int id, String referencia, String nombre, String descripcion,
                     int idTipo, int cantidad, double precio, int descuento,
@@ -116,18 +113,20 @@ public class Producto {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Producto{");
-        sb.append("id=").append(id);
-        sb.append(", referencia='").append(referencia).append('\'');
-        sb.append(", nombre='").append(nombre).append('\'');
-        sb.append(", descripcion='").append(descripcion).append('\'');
-        sb.append(", idTipo=").append(idTipo);
-        sb.append(", cantidad=").append(cantidad);
-        sb.append(", precio=").append(precio);
-        sb.append(", descuento=").append(descuento);
-        sb.append(", iva=").append(iva);
-        sb.append(", aplicarDto=").append(aplicarDto);
-        sb.append('}');
+        final StringBuilder sb = new StringBuilder();
+        sb.append("\n--- FICHA DE PRODUCTO ---\n");
+        sb.append("ID: ").append(id).append("\n");
+        sb.append("Referencia: '").append(referencia).append("'\n");
+        sb.append("Nombre: ").append(nombre).append("\n");
+        sb.append("Descripción: ").append(descripcion).append("\n");
+        sb.append("ID Tipo: ").append(idTipo).append("\n");
+        sb.append("Cantidad: ").append(cantidad).append("\n");
+        sb.append("Precio: ").append(precio).append(" €\n");
+        sb.append("Descuento: ").append(descuento).append(" %\n");
+        sb.append("IVA: ").append(iva).append(" %\n");
+        // Un toque extra: que ponga Sí/No en lugar de true/false
+        sb.append("¿Aplica Dto?: ").append(aplicarDto ? "Sí" : "No").append("\n");
+        sb.append("-------------------------");
         return sb.toString();
     }
 }

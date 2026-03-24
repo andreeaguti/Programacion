@@ -1,7 +1,6 @@
 package com.decroly;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -41,6 +40,107 @@ public class SQLAccessMercaDaw {
         return producto;
     }
 
+
+    //ESTE METODO DEVUELVE UNA LISTA DE TODOS LOS PRODUCTOS, CON TODOS SUS ATRIBUTOS
+    public static List<Producto> getProductos() {
+        List<Producto> producto = new LinkedList<>();
+
+        //Consulta SQL
+        String sqlLista = "SELECT * FROM Producto";
+
+        try (Connection connection = SqlDataManager.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSets = statement.executeQuery(sqlLista)) {
+
+            while (resultSets.next()) { //los atributos
+                int id = resultSets.getInt(1);
+                String referencia = resultSets.getNString(2);
+                String nombre = resultSets.getNString(3);
+                String descripcion = resultSets.getNString(4);
+                int id_tipo = resultSets.getInt(5);
+                int cantidad = resultSets.getInt(6);
+                double precio = resultSets.getDouble(7);
+                int descCuento = resultSets.getInt(8);
+                int iva = resultSets.getInt(9);
+                boolean aplicar_dto = resultSets.getBoolean(10);
+
+                producto.add(new Producto(id, referencia, nombre, descripcion, id_tipo, cantidad, precio,descCuento, iva, aplicar_dto));
+            }
+
+        } catch (SQLException e) {
+            System.err.println("SQLException: " + e.getMessage());
+        }
+        return producto;
+    }
+
+    //METODO PARA MOSTRAR DETALLE DE PRODUCTOS POR REFERENCIA
+    public static Producto getProductoPorReferencia(String referencia){
+        Producto p = null;
+
+        //Consulta SQL
+        String sqlProductos = "SELECT * FROM Producto WHERE referencia = ?";
+
+        try(Connection connection = SqlDataManager.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sqlProductos)) {
+
+            statement.setString(1, referencia); // Pasamos el texto de la referencia
+            ResultSet resultSets = statement.executeQuery();
+
+            while (resultSets.next()) {
+                int id = resultSets.getInt(1);
+                referencia = resultSets.getNString(2);
+                String nombre = resultSets.getNString(3);
+                String descripcion = resultSets.getNString(4);
+                int id_tipo = resultSets.getInt(5);
+                int cantidad = resultSets.getInt(6);
+                double precio = resultSets.getDouble(7);
+                int descCuento = resultSets.getInt(8);
+                int iva = resultSets.getInt(9);
+                boolean aplicar_dto = resultSets.getBoolean(10);
+
+                p = new Producto(id, referencia, nombre, descripcion, id_tipo, cantidad, precio,descCuento, iva, aplicar_dto);
+            }
+
+        }catch (SQLException e){
+            System.err.println("Error getting character: "+e.getMessage());
+        }
+        return p;
+    }
+
+
+    //METODO PARA MOSTRAR DETALLE DE PRODUCTOS POR TIPO
+    public static Producto getProductoPorTipo(int tipo){
+        Producto p = null;
+
+        //Consulta SQL
+        String sqlProductos = "SELECT * FROM Producto WHERE tipo = ?";
+
+        try(Connection connection = SqlDataManager.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sqlProductos)) {
+
+            statement.setInt(1, tipo); // Pasamos el texto de la referencia
+            ResultSet resultSets = statement.executeQuery();
+
+            while (resultSets.next()) {
+                int id = resultSets.getInt(1);
+                String referencia = resultSets.getNString(2);
+                String nombre = resultSets.getNString(3);
+                String descripcion = resultSets.getNString(4);
+                int id_tipo = resultSets.getInt(5);
+                int cantidad = resultSets.getInt(6);
+                double precio = resultSets.getDouble(7);
+                int descCuento = resultSets.getInt(8);
+                int iva = resultSets.getInt(9);
+                boolean aplicar_dto = resultSets.getBoolean(10);
+
+                p = new Producto(id, referencia, nombre, descripcion, id_tipo, cantidad, precio,descCuento, iva, aplicar_dto);
+            }
+
+        }catch (SQLException e){
+            System.err.println("Error getting character: "+e.getMessage());
+        }
+        return p;
+    }
 
 
 }
