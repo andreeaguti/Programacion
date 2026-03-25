@@ -109,16 +109,16 @@ public class SQLAccessMercaDaw {
 
 
     //METODO PARA MOSTRAR DETALLE DE PRODUCTOS POR TIPO
-    public static Producto getProductoPorTipo(int tipo){
+    public static Producto getProductoPorTipo(int id_tipo){
         Producto p = null;
 
         //Consulta SQL
-        String sqlProductos = "SELECT * FROM Producto WHERE tipo = ?";
+        String sqlProductos = "SELECT * FROM Producto WHERE id_tipo = ?";
 
         try(Connection connection = SqlDataManager.getConnection();
             PreparedStatement statement = connection.prepareStatement(sqlProductos)) {
 
-            statement.setInt(1, tipo); // Pasamos el texto de la referencia
+            statement.setInt(1, id_tipo); // Pasamos el texto de la referencia
             ResultSet resultSets = statement.executeQuery();
 
             while (resultSets.next()) {
@@ -126,7 +126,7 @@ public class SQLAccessMercaDaw {
                 String referencia = resultSets.getNString(2);
                 String nombre = resultSets.getNString(3);
                 String descripcion = resultSets.getNString(4);
-                int id_tipo = resultSets.getInt(5);
+                id_tipo = resultSets.getInt(5);
                 int cantidad = resultSets.getInt(6);
                 double precio = resultSets.getDouble(7);
                 int descCuento = resultSets.getInt(8);
@@ -140,6 +140,88 @@ public class SQLAccessMercaDaw {
             System.err.println("Error getting character: "+e.getMessage());
         }
         return p;
+    }
+
+
+    //METODO PARA MOSTRAR DETALLE DE PRODUCTOS POR CANTIDAD
+    public static Producto getProductoPorCantidad(int cantidad){
+        Producto p = null;
+
+        //Consulta SQL
+        String sqlProductos = "SELECT * FROM Producto WHERE cantidad = ?";
+
+        try(Connection connection = SqlDataManager.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sqlProductos)) {
+
+            statement.setInt(1, cantidad); // Pasamos el texto de la referencia
+            ResultSet resultSets = statement.executeQuery();
+
+            while (resultSets.next()) {
+                int id = resultSets.getInt(1);
+                String referencia = resultSets.getString(2);
+                String nombre = resultSets.getString(3);
+                String descripcion = resultSets.getString(4);
+                int id_tipo = resultSets.getInt(5);
+                cantidad = resultSets.getInt(6);
+                double precio = resultSets.getDouble(7);
+                int descCuento = resultSets.getInt(8);
+                int iva = resultSets.getInt(9);
+                boolean aplicar_dto = resultSets.getBoolean(10);
+
+                p = new Producto(id, referencia, nombre, descripcion, id_tipo, cantidad, precio,descCuento, iva, aplicar_dto);
+            }
+
+        }catch (SQLException e){
+            System.err.println("Error getting character: "+e.getMessage());
+        }
+        return p;
+    }
+
+    public static int insertProductos(Producto productos){
+        int response = -1;
+
+        String sqlStatement = "INSERT INTO Produto (referencia, nombre, descripcion, id_tipo, cantidad, precio, descuento, iva, aplicar_dto)" + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try(Connection connection = SqlDataManager.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sqlStatement)){
+
+            statement.setNString(1, productos.getReferencia());
+            statement.setNString(2, productos.getNombre());
+            statement.setNString(3, productos.getDescripcion());
+            statement.setInt(4, productos.getIdTipo());
+            statement.setInt(5, productos.getCantidad());
+            statement.setDouble(6, productos.getPrecio());
+            statement.setInt(7, productos.getDescuento());
+            statement.setInt(8, productos.getIva());
+            statement.setBoolean(9, productos.isAplicarDto());
+
+            response = statement.executeUpdate();
+
+        }catch (SQLException e){
+            System.err.println("SQLException: " + e.getMessage());
+        }
+
+        return response;
+    }
+
+    //Eliminar Producto por referencia
+    public static int deleteProductoByRef(String referencia){
+        int elements = -1;
+
+        String sqlDeleteCh = "DELETE FROM Producto WHERE referencia = ?";
+
+
+        try(Connection connection = SqlDataManager.getConnection();
+            PreparedStatement statementCh = connection.prepareStatement(sqlDeleteCh)){
+
+            statementCh.setString(1, referencia);
+
+            elements = statementCh.executeUpdate();
+
+        }catch (SQLException e){
+            System.err.println("SQLException: " + e.getMessage());
+        }
+        return elements;
     }
 
 

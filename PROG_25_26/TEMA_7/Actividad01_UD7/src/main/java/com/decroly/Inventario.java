@@ -46,27 +46,105 @@ public class Inventario {
 
                         if (productoEncontrado != null) {
                             System.out.println("\n--- PRODUCTO ENCONTRADO ---");
-                            System.out.println(productoEncontrado.toString()); // Usará tu toString vertical
+                            System.out.println(productoEncontrado.toString()); // Usará tu toString
                         } else {
                             System.out.println("No se ha encontrado ningún producto con la referencia: " + refBuscada);
                         }
                         break;
                     case "3":
                         System.out.print("Introduce el tipo del producto: ");
-                        String tipoBuscado = sc.nextLine(); // Leemos lo que escribe el usuario
+                        int tipoBuscado = sc.nextInt(); // Leemos lo que escribe el usuario
 
-                        Producto productosEncontrados = SQLAccessMercaDaw.getProductoPorTipo(Integer.parseInt(tipoBuscado));
+                        Producto productosEncontrados = SQLAccessMercaDaw.getProductoPorTipo(tipoBuscado);
 
                         if (productosEncontrados != null) {
                             System.out.println("\n--- PRODUCTO ENCONTRADO ---");
-                            System.out.println(productosEncontrados.toString()); // Usará tu toString vertical
+                            System.out.println(productosEncontrados.toString()); // Usará tu toString
                         } else {
-                            System.out.println("No se ha encontrado ningún producto con la referencia: " + tipoBuscado);
+                            System.out.println("No se ha encontrado ningún producto de tipo: " + tipoBuscado);
                         }
                         break;
                     case "4":
+                        System.out.print("Introduce la cantidad del producto: ");
+                        String cantidadBuscada = sc.nextLine(); // Leemos lo que escribe el usuario
 
+                        Producto productosEncontrados2 = SQLAccessMercaDaw.getProductoPorCantidad(Integer.parseInt(cantidadBuscada)); // lo pasamos a numero
+
+                        if (productosEncontrados2 != null) {
+                            System.out.println("\n--- PRODUCTO ENCONTRADO ---");
+                            System.out.println(productosEncontrados2.toString()); // Usará tu toString
+                        } else {
+                            System.out.println("No se ha encontrado ningún producto con la cantidad de : " + cantidadBuscada);
+                        }
                         break;
+                    case "5":
+                        System.out.println("\n--- INSERTAR NUEVO PRODUCTO ---");
+
+                        // 1. Pedir los datos al usuario
+                        System.out.print("Referencia (ej: L005): ");
+                        String ref = sc.nextLine();
+
+                        // Validar si la referencia ya existe
+                        if (SQLAccessMercaDaw.getProductoPorReferencia(ref) != null) {
+                            System.out.println("❌ Error: La referencia ya existe en el sistema.");
+                            break;
+                        }
+
+                        System.out.print("Nombre: ");
+                        String nom = sc.nextLine();
+
+                        System.out.print("Descripción: ");
+                        String desc = sc.nextLine();
+
+                        System.out.print("ID Tipo (1-Lácteos, 2-Carnicería, 3-Bebidas, etc.): ");
+                        int idTipo = Integer.parseInt(sc.nextLine());
+
+                        System.out.print("Cantidad: ");
+                        int cant = Integer.parseInt(sc.nextLine());
+
+                        System.out.print("Precio: ");
+                        double prec = Double.parseDouble(sc.nextLine());
+
+                        System.out.print("Descuento (%): ");
+                        int dto = Integer.parseInt(sc.nextLine());
+
+                        System.out.print("IVA (%): ");
+                        int iva = Integer.parseInt(sc.nextLine());
+
+                        System.out.print("¿Aplicar descuento? (true/false): ");
+                        boolean aplicar = Boolean.parseBoolean(sc.nextLine());
+
+                        // 2. Crear el objeto Producto
+                        // El ID se pone en 0 o -1 porque la base de datos lo genera solo (Auto-increment)
+                        Producto nuevoProducto = new Producto(0, ref, nom, desc, idTipo, cant, prec, dto, iva, aplicar);
+
+                        // 3. Llamar al metodo de eliminar
+                        int resultado = SQLAccessMercaDaw.insertProductos(nuevoProducto);
+
+                        // 4. Comprobar si funcionó
+                        if (resultado > 0) {
+                            System.out.println("¡Producto insertado!");
+                        } else {
+                            System.out.println("No se pudo insertar el producto.");
+                        }
+                        break;
+
+                    case "6":
+                        System.out.println("\n--- ELIMINAR UN PRODUCTO ---");
+
+                        // 1. Pedir los datos al usuario
+                        System.out.print("Referencia del producto que desea eliminar (ej: L005): ");
+                        String referencia = sc.nextLine();
+
+                            int resultado2 = SQLAccessMercaDaw.deleteProductoByRef(referencia);
+
+                            if (resultado2 >= 0) {
+                                System.out.println("¡Producto eliminado!");
+                            } else {
+                                System.out.println("No se pudo eliminar el producto.");
+                            }
+                        break;
+
                 }
             }catch(Exception e) {
                 e.printStackTrace(); //mostrar las llamadas

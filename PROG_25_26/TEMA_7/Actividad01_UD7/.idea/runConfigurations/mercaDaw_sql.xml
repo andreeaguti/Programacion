@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="mercaDaw.sql" type="DatabaseScript" editBeforeRun="true" nameIsGenerated="true">
+    <script-file value="$PROJECT_DIR$/resources/mercaDaw.sql" />
+    <script-mode>FILE</script-mode>
+    <data-source id="0b130535-0a3c-4e88-85ad-a41a05a6da56" />
+    <method v="2" />
+  </configuration>
+</component>
