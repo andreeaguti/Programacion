@@ -180,7 +180,7 @@ public class SQLAccessMercaDaw {
     public static int insertProductos(Producto productos){
         int response = -1;
 
-        String sqlStatement = "INSERT INTO Produto (referencia, nombre, descripcion, id_tipo, cantidad, precio, descuento, iva, aplicar_dto)" + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sqlStatement = "INSERT INTO Producto (referencia, nombre, descripcion, id_tipo, cantidad, precio, descuento, iva, aplicar_dto)" + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try(Connection connection = SqlDataManager.getConnection();
             PreparedStatement statement = connection.prepareStatement(sqlStatement)){
@@ -224,5 +224,55 @@ public class SQLAccessMercaDaw {
         return elements;
     }
 
+    //METODO PARA ACTUALIZAR PRODUCTO
+    public static int updateProducto(Producto producto){
+        int response = -1;
+
+        //SOLO estoy actualizando descripción, cantidad, precio, descuento, AplicarDto
+        String sqlStatement = "UPDATE Producto set descripcion = ? , " +
+                "cantidad = ?, precio = ?, descuento, aplicarDto, = ? where id = ?";
+
+        try(Connection connection = SqlDataManager.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sqlStatement);)
+        {
+            //Campos a actualizar
+            statement.setNString(4, producto.getDescripcion());
+            statement.setInt(6, producto.getCantidad());
+            statement.setDouble(7, producto.getPrecio());
+            statement.setInt(8, producto.getDescuento());
+            statement.setBoolean(10, producto.isAplicarDto());
+
+            //Heroe que se va a actualizar
+            statement.setInt(1, producto.getId());
+
+            response = statement.executeUpdate();
+
+        }catch (SQLException e){
+            System.err.println("SQLException: " + e.getMessage());
+        }
+
+        return response;
+    }
+
+    //METODO PARA INSERTAR TIPO DE PRODUCTO
+    public static int insertTipoProducto(TipoProducto tipoProducto){
+        int response = -1;
+
+        //id_tipo no hace falta porque se genera solo
+        String sqlStatement = "INSERT INTO TipoProducto (nombre_tipo)" + " VALUES (?)";
+
+        try(Connection connection = SqlDataManager.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sqlStatement)){
+
+            statement.setString(1, tipoProducto.getNombre_tipo());
+
+            response = statement.executeUpdate();
+
+        }catch (SQLException e){
+            System.err.println("SQLException: " + e.getMessage());
+        }
+
+        return response;
+    }
 
 }
