@@ -1,0 +1,13 @@
+package com.decroly;
+
+public class EntradaNormal extends Entrada {
+
+    public EntradaNormal(int id, int idSesion, int fila, int columna, double precioBase) {
+        super(id, idSesion, fila, columna, precioBase);
+    }
+
+    @Override
+    public double calcularPrecioFinal() {
+        return this.precioBase;
+    }
+}
