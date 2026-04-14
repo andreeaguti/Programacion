@@ -18,8 +18,8 @@ public class Pelicula implements Serializable {
 
     public Pelicula(int id, String titulo, int duracion, String genero) {
         this.id = id;
-        this.titulo = titulo;
-        this.duracion = duracion;
+        setTitulo(titulo);
+        setDuracion(duracion);
         this.genero = genero;
     }
 
@@ -44,6 +44,9 @@ public class Pelicula implements Serializable {
     }
 
     public void setTitulo(String titulo) {
+        if (titulo == null || titulo.trim().isEmpty()){
+            throw new CineException("El titulo no puede estar vacio");
+        }
         this.titulo = titulo;
     }
 
