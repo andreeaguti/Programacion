@@ -85,7 +85,7 @@
                         </TextField>
                      </children>
                   </HBox>
-                  <HBox  alignment="CENTER_LEFT" minHeight="70.0" prefHeight="70.0" prefWidth="200.0" spacing="25.0">
+                  <HBox alignment="CENTER_LEFT" minHeight="70.0" prefHeight="70.0" prefWidth="200.0" spacing="25.0">
                      <children>
                         <Label text="Nombre" textFill="WHITE">
                            <font>
@@ -102,7 +102,7 @@
                         </TextField>
                      </children>
                   </HBox>
-                  <HBox  alignment="CENTER_LEFT" layoutX="10.0" layoutY="80.0" minHeight="70.0" prefHeight="70.0" prefWidth="200.0" spacing="15.0">
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="80.0" minHeight="70.0" prefHeight="70.0" prefWidth="200.0" spacing="15.0">
                      <children>
                         <Label text="Apellidos" textFill="WHITE">
                            <font>
