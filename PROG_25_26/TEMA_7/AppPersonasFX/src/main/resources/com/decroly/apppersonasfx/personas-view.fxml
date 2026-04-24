@@ -163,7 +163,7 @@
                               <Insets left="20.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="telefonoTextF"prefHeight="39.0" prefWidth="289.0" promptText="6648119075">
+                        <TextField fx:id="telefonoTextF" prefHeight="39.0" prefWidth="289.0" promptText="6648119075">
                            <font>
                               <Font size="18.0" />
                            </font>
