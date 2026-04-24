@@ -1,7 +1,8 @@
 module AppPersonasFXX {
     requires javafx.controls; //Le dice a Java que vas a usar botones, etiquetas y ventanas de JavaFX.
     requires javafx.fxml; //Necesario para que el programa pueda leer tus archivos .fxml
-    requires java.sql;//Obligatorio si en el futuro conectas tu App de Personas con una base de datos.
+    requires java.sql;
+    requires java.desktop;//Obligatorio si en el futuro conectas tu App de Personas con una base de datos.
 
 
     exports com.decroly.apppersonasfx;

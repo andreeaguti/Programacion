@@ -1,0 +1,12 @@
+.my-background {
+    -fx-background-color: #EEC6D0;
+}
+.my-button{
+    -fx-background-color: #E4447F ;
+    -fx-text-fill:white;
+    -fx-padding: 15,15,15 15;
+}
+
+.my-button:hover {
+ -fx-background-color: #00807c;
+}

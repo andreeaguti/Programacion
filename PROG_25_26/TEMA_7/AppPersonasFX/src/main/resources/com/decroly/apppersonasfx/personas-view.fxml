@@ -1,16 +1,192 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.decroly.apppersonasfx.PersonasController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<AnchorPane fx:id="mainPanel" maxHeight="640.0" maxWidth="640.0" minHeight="640.0" minWidth="640.0" prefHeight="640.0" prefWidth="640.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.decroly.apppersonasfx.PersonasController">
+   <children>
+      <AnchorPane fx:id="mainView" maxHeight="640.0" maxWidth="640.0" minHeight="640.0" minWidth="640.0" prefHeight="640.0" prefWidth="640.0" styleClass="my-background" visible="false">
+         <children>
+            <Label layoutX="103.0" layoutY="53.0" prefHeight="58.0" prefWidth="434.0" text="App Gestión de Persona" textFill="WHITE" AnchorPane.leftAnchor="103.0" AnchorPane.rightAnchor="103.0" AnchorPane.topAnchor="53.0">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="257.0" fitWidth="382.0" layoutX="138.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/logo.png" />
+               </image>
+            </ImageView>
+            <VBox layoutX="176.0" layoutY="482.0" prefHeight="128.0" prefWidth="380.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="482.0">
+               <children>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+                     <children>
+                        <Button fx:id="insertButton" mnemonicParsing="false" onAction="#onInsertButtonClick" prefHeight="40.0" prefWidth="100.0" styleClass="my-button" stylesheets="@../../../style.css" text="Insertar" textFill="WHITE">
+                           <font>
+                              <Font name="Candara" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="listadoButton" mnemonicParsing="false" onAction="#onListadoButtonClick" prefHeight="40.0" prefWidth="100.0" styleClass="my-button" text="Listado" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+                     <children>
+                        <Button fx:id="buscarButton" mnemonicParsing="false" onAction="#onBuscarButtonClick" prefHeight="40.0" prefWidth="100.0" styleClass="my-button" text="Buscar">
+                           <font>
+                              <Font name="Candara" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btn_salir" mnemonicParsing="false" onAction="#onSalirButtonOnAction" prefHeight="40.0" prefWidth="100.0" styleClass="my-button" text="Salir">
+                           <font>
+                              <Font name="Candara" size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="formView" maxHeight="640.0" maxWidth="640.0" minHeight="640.0" minWidth="640.0" prefHeight="640.0" prefWidth="640.0" styleClass="my-background">
+         <children>
+            <Label fx:id="labelFormTittle" layoutX="103.0" layoutY="22.0" prefHeight="58.0" prefWidth="434.0" text="Insertar nueva persona" textFill="WHITE" AnchorPane.leftAnchor="103.0" AnchorPane.rightAnchor="103.0" AnchorPane.topAnchor="22.0">
+               <font>
+                  <Font name="Candara Light" size="40.0" />
+               </font>
+            </Label>
+            <VBox layoutX="15.0" layoutY="92.0" minHeight="370.0" minWidth="600.0" prefHeight="501.0" prefWidth="600.0" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="92.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" minHeight="70.0" prefHeight="70.0" prefWidth="200.0" spacing="70.0">
+                     <children>
+                        <Label text="DNI" textFill="WHITE">
+                           <font>
+                              <Font name="Candara" size="24.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="dniTextF" prefHeight="39.0" prefWidth="289.0" promptText="12345678-A">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox  alignment="CENTER_LEFT" minHeight="70.0" prefHeight="70.0" prefWidth="200.0" spacing="25.0">
+                     <children>
+                        <Label text="Nombre" textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="nombreTextF" prefHeight="39.0" prefWidth="289.0" promptText="Andrea">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox  alignment="CENTER_LEFT" layoutX="10.0" layoutY="80.0" minHeight="70.0" prefHeight="70.0" prefWidth="200.0" spacing="15.0">
+                     <children>
+                        <Label text="Apellidos" textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="apellidoTextF" prefHeight="39.0" prefWidth="289.0" promptText="Gutiérrez">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="150.0" minHeight="70.0" prefHeight="70.0" prefWidth="200.0" spacing="56.0">
+                     <children>
+                        <Label text="Email" textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="emailTextF" prefHeight="39.0" prefWidth="289.0" promptText="andreagutierrez@gmail.es">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="220.0" minHeight="70.0" prefHeight="70.0" prefWidth="200.0" spacing="60.0">
+                     <children>
+                        <Label text="Edad" textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="edadTextF" prefHeight="39.0" prefWidth="289.0" promptText="32">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="290.0" minHeight="70.0" prefHeight="70.0" prefWidth="200.0" spacing="20.0">
+                     <children>
+                        <Label text="Teléfono" textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="telefonoTextF"prefHeight="39.0" prefWidth="289.0" promptText="6648119075">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="55.0" prefWidth="600.0" spacing="40.0">
+                     <children>
+                        <Button fx:id="guardarFormButton" mnemonicParsing="false" onAction="#onGuardarFormClick" styleClass="my-button" text="Guardar">
+                           <font>
+                              <Font name="Candara Light" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="CancelFormButton" mnemonicParsing="false" onAction="#onCancelFormClick" styleClass="my-button" text="Cancelar">
+                           <font>
+                              <Font name="Candara" size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
