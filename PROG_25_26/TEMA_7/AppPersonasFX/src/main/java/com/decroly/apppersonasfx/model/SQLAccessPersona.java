@@ -12,6 +12,8 @@ import java.util.List;
  */
 public class SQLAccessPersona {
 
+
+
     /**
      * Obtiene todas las personas de la base de datos.
      * @return Una lista (LinkedList) con todos los objetos Persona encontrados.
@@ -56,6 +58,47 @@ public class SQLAccessPersona {
 
         return personas;
     }
+
+    public static List<Persona> getpersonasByNameContains(String name){
+        List<Persona> personas = new LinkedList<>();
+
+        //Sentencia SQL
+        String sqlpersonas = "SELECT * FROM person where name like ?";
+
+        try(Connection connection = SQLDataBaseManager.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sqlpersonas)){
+
+            statement.setString(1, name+"%");
+            ResultSet resultSets = statement.executeQuery();
+
+            while (resultSets.next()) {
+                String dni = resultSets.getNString(1);
+                String nameDB = resultSets.getNString(2);
+                String surname = resultSets.getNString(3);
+                String email = resultSets.getNString(4);
+                int age = resultSets.getInt(5);
+                String phone = resultSets.getNString(6);
+
+                //Uso de patron builder
+                Persona p = Persona.builder()
+                        .dni(dni)
+                        .name(nameDB)
+                        .surname(surname)
+                        .email(email)
+                        .age(age)
+                        .phone(phone)
+                        .build();
+
+                personas.add(p);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("SQLException: " + e.getMessage());
+        }
+
+        return personas;
+    }
+
 
     /**
      * Busca una persona específica por su DNI.
@@ -122,7 +165,7 @@ public class SQLAccessPersona {
      * Inserta una nueva persona en la base de datos.
      * @return true si se insertó correctamente.
      */
-    public boolean createPersona(Persona persona){
+    public static boolean createPersona(Persona persona){
         boolean result = false;
         String sqlInsertpersonas = "INSERT INTO person (dni, name, surname, email, age, phone) " +
                 "VALUES (?, ?, ?, ?, ?, ?)";

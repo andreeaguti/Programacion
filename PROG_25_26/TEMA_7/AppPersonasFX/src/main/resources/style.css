@@ -10,3 +10,9 @@
 .my-button:hover {
  -fx-background-color: #00807c;
 }
+
+.mi-title-view{
+    -fx-text-fill: white; /*color*/
+    -fx-font-size: 40px;
+}
+
