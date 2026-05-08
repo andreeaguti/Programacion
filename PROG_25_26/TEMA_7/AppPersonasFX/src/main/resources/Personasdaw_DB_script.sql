@@ -1,4 +1,7 @@
-CREATE SCHEMA dawpeople;
+DROP DATABASE IF EXISTS dawpeople;
+CREATE DATABASE dawpeople;
+USE dawpeople;
+
 CREATE TABLE `dawpeople`.`person` (
                                       `dni` VARCHAR(10) NOT NULL,
                                       `name` VARCHAR(45) NOT NULL,

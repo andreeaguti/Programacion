@@ -35,7 +35,10 @@ public class PersonasController implements Initializable {
 
     private ObservableList<Persona> personas = FXCollections.observableArrayList();
 
-    private String [] estadosLabel= {"Se ha creado el registro correctamente",
+    private String [] estadosLabel= {"Se h
+
+
+
             "Error al crear el registro",
             "Se ha producido una excepción",};
 
